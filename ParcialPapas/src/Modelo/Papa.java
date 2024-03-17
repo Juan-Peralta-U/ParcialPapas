@@ -10,21 +10,31 @@ package Modelo;
  */
 public class Papa {
 
+    private String nombreComun;
     private String especie;
     private String zonaProduccion;
     private String habitoCrecimiento;
     private String floracion;
     private String bayas;
     private String tuberculos;
-    
+
     //OJO con los parametros puede que se requieran
     public Papa() {
+        this.nombreComun = nombreComun;
         this.especie = especie;
         this.zonaProduccion = zonaProduccion;
         this.habitoCrecimiento = habitoCrecimiento;
         this.floracion = floracion;
         this.bayas = bayas;
         this.tuberculos = tuberculos;
+    }
+
+    public String getNombreComun() {
+        return nombreComun;
+    }
+
+    public void setNombreComun(String nombreComun) {
+        this.nombreComun = nombreComun;
     }
 
     public String getEspecie() {
@@ -74,7 +84,5 @@ public class Papa {
     public void setTuberculos(String tuberculos) {
         this.tuberculos = tuberculos;
     }
-    
-    
-    
+
 }

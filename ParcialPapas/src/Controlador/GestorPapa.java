@@ -17,7 +17,7 @@ public class GestorPapa {
 
     public GestorPapa() {
         obtenerRegistros();
-        buscarEstudiante();
+        buscarPapa();
     }
 
     private void obtenerRegistros() {
@@ -30,31 +30,32 @@ public class GestorPapa {
                 numeroEstudiante++;
                 miPapa = listaDePapas.get(i);
                 System.out.println("****************Estudiante No. " + numeroEstudiante + "**********");
-                System.out.println("Codigo Estudiante: " + miPapa.getEspecie());
-                System.out.println("Nombre Estudiante: " + miPapa.getZonaProduccion());
-                System.out.println("Edad Estudiante: " + miPapa.getHabitoCrecimiento());
-                System.out.println("Edad Estudiante: " + miPapa.getFloracion());
-                System.out.println("Edad Estudiante: " + miPapa.getBayas());
-                System.out.println("Edad Estudiante: " + miPapa.getTuberculos());
+                System.out.println("Nombre Comun: " + miPapa.getNombreComun());
+                System.out.println("Especie: " + miPapa.getEspecie());
+                System.out.println("Zona de Produccion: " + miPapa.getZonaProduccion());
+                System.out.println("Habito de Crecimiento: " + miPapa.getHabitoCrecimiento());
+                System.out.println("Floracione: " + miPapa.getFloracion());
+                System.out.println("Bayas: " + miPapa.getBayas());
+                System.out.println("Tuberculos: " + miPapa.getTuberculos());
                 System.out.println("*************************************************\n");
             }
         } else {
             System.out.println("Actualmente no existen registros de estudiantes");
         }
     }
-    
-    private void buscarEstudiante() {
+
+    private void buscarPapa() {
         miPapaDAO = new PapaDAO();
-        //Toca poner un identificador
+        //Toca poner un identificador??
         String codigo = "202210200030";
         Papa papaEncontrada = miPapaDAO.consultarPapa();
         if (papaEncontrada != null) {
             System.out.println("Especie Estudiante: " + papaEncontrada.getEspecie());
-                System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
-                System.out.println("HAbito de Crecimiento: " + papaEncontrada.getHabitoCrecimiento());
-                System.out.println("Floracion: " + papaEncontrada.getFloracion());
-                System.out.println("Bayas: " + papaEncontrada.getBayas());
-                System.out.println("Tuberculos: " + papaEncontrada.getTuberculos());
+            System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
+            System.out.println("HAbito de Crecimiento: " + papaEncontrada.getHabitoCrecimiento());
+            System.out.println("Floracion: " + papaEncontrada.getFloracion());
+            System.out.println("Bayas: " + papaEncontrada.getBayas());
+            System.out.println("Tuberculos: " + papaEncontrada.getTuberculos());
             System.out.println("*************************************************\n");
 
         } else {
@@ -62,6 +63,3 @@ public class GestorPapa {
         }
     }
 }
-
-
-

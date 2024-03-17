@@ -30,15 +30,16 @@ public class PapaDAO {
 
     public Papa consultarPapa() {
         Papa papa = null;
-        String consulta = "SELECT * FROM Estudiantes ";
+        String consulta = "SELECT * FROM Papas ";
         try {
             con = (Connection) Conexion.getConexion();
             st = con.createStatement();
             rs = st.executeQuery(consulta);
             if (rs.next()) {
                 //posible error a futuro con el constructor
-                papa= new Papa();
-                papa.setEspecie(rs.getString("codigo"));
+                papa = new Papa();
+                papa.setNombreComun(rs.getString("Nombre Comun"));
+                papa.setEspecie(rs.getString("Especie"));
                 papa.setZonaProduccion(rs.getString("nombre"));
                 papa.setHabitoCrecimiento(rs.getString(consulta));
                 papa.setFloracion(rs.getString("Floracion"));
@@ -56,7 +57,7 @@ public class PapaDAO {
 
     public ArrayList<Papa> listaDePapas() {
         ArrayList<Papa> misPapas = new ArrayList<Papa>();
-        String consulta = "SELECT * FROM Estudiantes";
+        String consulta = "SELECT * FROM Papas";
         try {
             con = Conexion.getConexion();
             st = con.createStatement();
@@ -64,6 +65,7 @@ public class PapaDAO {
             while (rs.next()) {
                 //Mismo error con el constructor
                 Papa papa = new Papa();
+                papa.setNombreComun(rs.getString("Nombre Comun"));
                 papa.setEspecie(rs.getString("codigo"));
                 papa.setZonaProduccion(rs.getString("nombre"));
                 papa.setHabitoCrecimiento(rs.getString(consulta));
@@ -79,8 +81,5 @@ public class PapaDAO {
         }
         return misPapas;
     }
-    
-    
+
 }
-
-
