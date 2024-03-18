@@ -50,7 +50,7 @@ public class PapaDAO {
             st.close();
             Conexion.desconectar();
         } catch (SQLException ex) {
-            System.out.println("No se pudo realizar la consulta");
+            //Ventana error consulta
         }
         return papa;
     }
@@ -77,7 +77,7 @@ public class PapaDAO {
             st.close();
             Conexion.desconectar();
         } catch (SQLException ex) {
-            System.out.println("No se pudo realizar la consulta");
+           //Ventana error consulta
         }
         return misPapas;
     }

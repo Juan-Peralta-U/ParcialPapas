@@ -29,15 +29,10 @@ public class GestorPapa {
             for (int i = 0; i < listaDePapas.size(); i++) {
                 numeroEstudiante++;
                 miPapa = listaDePapas.get(i);
-                System.out.println("****************Estudiante No. " + numeroEstudiante + "**********");
-                System.out.println("Nombre Comun: " + miPapa.getNombreComun());
-                System.out.println("Especie: " + miPapa.getEspecie());
-                System.out.println("Zona de Produccion: " + miPapa.getZonaProduccion());
-                System.out.println("Habito de Crecimiento: " + miPapa.getHabitoCrecimiento());
-                System.out.println("Floracione: " + miPapa.getFloracion());
-                System.out.println("Bayas: " + miPapa.getBayas());
-                System.out.println("Tuberculos: " + miPapa.getTuberculos());
-                System.out.println("*************************************************\n");
+
+                //TOda la informacion de las papas
+                //EJM System.out.println("Especie: " + miPapa.getEspecie());
+                
             }
         } else {
             System.out.println("Actualmente no existen registros de estudiantes");
@@ -50,16 +45,12 @@ public class GestorPapa {
         String codigo = "202210200030";
         Papa papaEncontrada = miPapaDAO.consultarPapa();
         if (papaEncontrada != null) {
-            System.out.println("Especie Estudiante: " + papaEncontrada.getEspecie());
-            System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
-            System.out.println("HAbito de Crecimiento: " + papaEncontrada.getHabitoCrecimiento());
-            System.out.println("Floracion: " + papaEncontrada.getFloracion());
-            System.out.println("Bayas: " + papaEncontrada.getBayas());
-            System.out.println("Tuberculos: " + papaEncontrada.getTuberculos());
-            System.out.println("*************************************************\n");
+            
+            //Lo mismo del metodo de alleba pero System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
+
 
         } else {
-            System.out.println("No existen un papas con ese codigo");
+            //ventana de error
         }
     }
 }
