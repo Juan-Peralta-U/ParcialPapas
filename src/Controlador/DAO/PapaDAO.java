@@ -1,11 +1,13 @@
+package Controlador.DAO;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controlador;
+
 
 import Modelo.Conexion.Conexion;
-import Modelo.Papa;
+import Modelo.PapaVO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,8 +30,8 @@ public class PapaDAO {
         rs = null;
     }
 
-    public Papa consultarPapa() {
-        Papa papa = null;
+    public PapaVO consultarPapa() {
+        PapaVO papa = null;
         String consulta = "SELECT * FROM Papas ";
         try {
             con = (Connection) Conexion.getConexion();
@@ -37,7 +39,7 @@ public class PapaDAO {
             rs = st.executeQuery(consulta);
             if (rs.next()) {
                 //posible error a futuro con el constructor
-                papa = new Papa();
+                papa = new PapaVO();
                 papa.setNombreComun(rs.getString("Nombre Comun"));
                 papa.setEspecie(rs.getString("Especie"));
                 papa.setZonaProduccion(rs.getString("nombre"));
@@ -55,8 +57,8 @@ public class PapaDAO {
         return papa;
     }
 
-    public ArrayList<Papa> listaDePapas() {
-        ArrayList<Papa> misPapas = new ArrayList<Papa>();
+    public ArrayList<PapaVO> listaDePapas() {
+        ArrayList<PapaVO> misPapas = new ArrayList<PapaVO>();
         String consulta = "SELECT * FROM Papas";
         try {
             con = Conexion.getConexion();
@@ -64,7 +66,7 @@ public class PapaDAO {
             rs = st.executeQuery(consulta);
             while (rs.next()) {
                 //Mismo error con el constructor
-                Papa papa = new Papa();
+                PapaVO papa = new PapaVO();
                 papa.setNombreComun(rs.getString("Nombre Comun"));
                 papa.setEspecie(rs.getString("codigo"));
                 papa.setZonaProduccion(rs.getString("nombre"));

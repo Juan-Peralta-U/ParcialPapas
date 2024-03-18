@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author Familia Mora
  */
-public class Papa {
+public class PapaVO {
 
     private String nombreComun;
     private String especie;
@@ -19,7 +19,7 @@ public class Papa {
     private String tuberculos;
 
     //OJO con los parametros puede que se requieran
-    public Papa() {
+    public PapaVO() {
         this.nombreComun = nombreComun;
         this.especie = especie;
         this.zonaProduccion = zonaProduccion;

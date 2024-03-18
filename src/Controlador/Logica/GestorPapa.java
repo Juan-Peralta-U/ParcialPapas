@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controlador;
+package Controlador.Logica;
 
-import Modelo.Papa;
+import Controlador.DAO.PapaDAO;
+import Modelo.PapaVO;
 import java.util.ArrayList;
 
 /**
@@ -22,8 +23,8 @@ public class GestorPapa {
 
     private void obtenerRegistros() {
         miPapaDAO = new PapaDAO();
-        Papa miPapa;
-        ArrayList<Papa> listaDePapas = miPapaDAO.listaDePapas();
+        PapaVO miPapa;
+        ArrayList<PapaVO> listaDePapas = miPapaDAO.listaDePapas();
         if (listaDePapas.size() > 0) {
             int numeroEstudiante = 0;
             for (int i = 0; i < listaDePapas.size(); i++) {
@@ -48,7 +49,7 @@ public class GestorPapa {
         miPapaDAO = new PapaDAO();
         //Toca poner un identificador??
         String codigo = "202210200030";
-        Papa papaEncontrada = miPapaDAO.consultarPapa();
+        PapaVO papaEncontrada = miPapaDAO.consultarPapa();
         if (papaEncontrada != null) {
             System.out.println("Especie Estudiante: " + papaEncontrada.getEspecie());
             System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
@@ -62,4 +63,6 @@ public class GestorPapa {
             System.out.println("No existen un papas con ese codigo");
         }
     }
+
+
 }
