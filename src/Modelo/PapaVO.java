@@ -19,15 +19,7 @@ public class PapaVO {
     private String tuberculos;
 
     //OJO con los parametros puede que se requieran
-    public PapaVO() {
-        this.nombreComun = nombreComun;
-        this.especie = especie;
-        this.zonaProduccion = zonaProduccion;
-        this.habitoCrecimiento = habitoCrecimiento;
-        this.floracion = floracion;
-        this.bayas = bayas;
-        this.tuberculos = tuberculos;
-    }
+    public PapaVO(){};
 
     public String getNombreComun() {
         return nombreComun;

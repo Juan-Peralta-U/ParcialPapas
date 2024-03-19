@@ -22,14 +22,6 @@ public class GestorPapa {
         this.papaDAO = new PapaDAO();
     }
 
-    private void agregarPapa(String nombreComun, String especie,
-            String zonaProduccion, String habitoCrecimiento,
-            String floracion, String bayas, String tuberculos) {
-
-        
-        
-    }
-
     private void obtenerRegistros() {
         PapaVO miPapa;
         ArrayList<PapaVO> listaDePapas = papaDAO.listaDePapas();
@@ -50,8 +42,9 @@ public class GestorPapa {
     private void buscarPapa() {
         papaDAO = new PapaDAO();
         //Toca poner un identificador??
-        String codigo = "202210200030";
+        String codigo = "";
         PapaVO papaEncontrada = papaDAO.consultarPapa();
+
         if (papaEncontrada != null) {
 
             //Lo mismo del metodo de alleba pero System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
@@ -72,6 +65,28 @@ public class GestorPapa {
         controler.crearVentanaInicial(pData[0], pData[1], pData[2], this.iteradorPapas);
 
         iteradorPapas++;
+    }
+
+    private void registrarPapa(String nombreComun, String especie,
+            String zonaProduccion, String habitoCrecimiento,
+            String floracion, String bayas, String tuberculos) 
+    {
+
+        PapaVO registroPapa1 = new PapaVO();
+
+        registroPapa1.setNombreComun(nombreComun);
+        registroPapa1.setEspecie(especie);
+        registroPapa1.setZonaProduccion(zonaProduccion);
+        registroPapa1.setHabitoCrecimiento(habitoCrecimiento);
+        registroPapa1.setFloracion(floracion);
+        registroPapa1.setBayas(bayas);
+        registroPapa1.setTuberculos(tuberculos);
+    }
+
+    
+    //Necesito ver bien la presentacion
+    private void eliminarPapa() {
+
     }
 
 }
