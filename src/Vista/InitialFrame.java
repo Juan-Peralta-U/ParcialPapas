@@ -25,6 +25,13 @@ public class InitialFrame extends javax.swing.JFrame {
         setVisible(true);
     }
 
+    public void limpiarFrame(){
+        this.txAreaBayas.setText("");
+        this.txAreaFloracion.setText("");
+        this.txAreaHabito.setText("");
+        this.txAreaTuberculos.setText("");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +81,7 @@ public class InitialFrame extends javax.swing.JFrame {
         btnLimpiar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnLimpiar.setForeground(new java.awt.Color(13, 24, 89));
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setActionCommand("LimpiarInitial");
         btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 24, 89)));
         btnLimpiar.setContentAreaFilled(false);
 

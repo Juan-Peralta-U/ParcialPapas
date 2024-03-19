@@ -41,7 +41,13 @@ public class Controler implements ActionListener{
         frameInicial.fieldZonaProd.setText(zonaProduccion);
     }
     
-
+    
+    public void crearVentanaCrud(){
+        this.crudView.btnActualizar.addActionListener(this);
+        this.crudView.btnConsultar.addActionListener(this);
+        this.crudView.btnEliminar.addActionListener(this);
+        this.crudView.setVisible(true);
+    }
     
     
     @Override
@@ -52,6 +58,12 @@ public class Controler implements ActionListener{
             case "InsertarInitial" ->{
                 this.frameInicial.dispose();
                 this.gestorPapa.cargarPapas(archivoPropiedades, this);
+            }
+            case "LimpiarInitial" ->{
+                this.frameInicial.limpiarFrame();
+            }
+            case ""->{
+                
             }
             
         }

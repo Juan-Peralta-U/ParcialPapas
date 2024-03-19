@@ -22,17 +22,14 @@ public class GestorPapa {
         this.papaDAO = new PapaDAO();
     }
 
-    private void agregarPapa(String nombreComun,String especie,
-            String zonaProduccion, String habitoCrecimiento, 
-            String floracion, String bayas, String tuberculos)
-    {
-        
-        
+    private void agregarPapa(String nombreComun, String especie,
+            String zonaProduccion, String habitoCrecimiento,
+            String floracion, String bayas, String tuberculos) {
+
         
         
     }
-    
-    
+
     private void obtenerRegistros() {
         PapaVO miPapa;
         ArrayList<PapaVO> listaDePapas = papaDAO.listaDePapas();
@@ -44,42 +41,37 @@ public class GestorPapa {
 
                 //TOda la informacion de las papas
                 //EJM System.out.println("Especie: " + miPapa.getEspecie());
-                
             }
         } else {
             System.out.println("Actualmente no existen registros de estudiantes");
         }
     }
 
-            
     private void buscarPapa() {
         papaDAO = new PapaDAO();
         //Toca poner un identificador??
         String codigo = "202210200030";
         PapaVO papaEncontrada = papaDAO.consultarPapa();
         if (papaEncontrada != null) {
-            
+
             //Lo mismo del metodo de alleba pero System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
-
-
         } else {
             //ventana de error
         }
     }
-    
-    
-    public void cargarPapas(ArchivoPropiedades propiedades, Controler controler){
-                
-        if(propiedades.getData("Papa"+this.iteradorPapas) == null)
-            //iniciar CRUD
+
+    public void cargarPapas(ArchivoPropiedades propiedades, Controler controler) {
+
+        if (propiedades.getData("Papa" + this.iteradorPapas) == null) {
+            controler.crearVentanaCrud();
             return;
-            
-        String[] pData = propiedades.getData("Papa"+iteradorPapas).split(",");
-            
-        controler.crearVentanaInicial(pData[0],pData[1],pData[2], this.iteradorPapas);
-            
+        }
+
+        String[] pData = propiedades.getData("Papa" + iteradorPapas).split(",");
+        // inserta Datos en sql 
+        controler.crearVentanaInicial(pData[0], pData[1], pData[2], this.iteradorPapas);
+
         iteradorPapas++;
-            
     }
 
 }
