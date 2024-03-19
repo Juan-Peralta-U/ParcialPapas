@@ -5,6 +5,8 @@
 package Vista;
 
 import java.awt.Color;
+import javax.swing.JViewport;
+import javax.swing.UIManager;
 
 /**
  *
@@ -16,6 +18,7 @@ public class InitialFrame extends javax.swing.JFrame {
      * Creates new form InitialFrame
      */
     public InitialFrame() {
+        UIManager.put("ScrollBarUI", "javax.swing.plaf.basic.BasicScrollBarUI"); // Cambiar Scroll por defecto
         initComponents();
         getContentPane().setBackground(Color.white);
         setVisible(true);
@@ -115,6 +118,7 @@ public class InitialFrame extends javax.swing.JFrame {
         labHabito.setText("Hábito de crecimiento");
 
         txAreaFloracion.setColumns(20);
+        txAreaFloracion.setLineWrap(true);
         txAreaFloracion.setRows(5);
         jScrollPane1.setViewportView(txAreaFloracion);
 
@@ -124,10 +128,12 @@ public class InitialFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txAreaHabito);
 
         txAreaBayas.setColumns(20);
+        txAreaBayas.setLineWrap(true);
         txAreaBayas.setRows(5);
         jScrollPane3.setViewportView(txAreaBayas);
 
         txAreaTuberculos.setColumns(20);
+        txAreaTuberculos.setLineWrap(true);
         txAreaTuberculos.setRows(5);
         jScrollPane4.setViewportView(txAreaTuberculos);
 
