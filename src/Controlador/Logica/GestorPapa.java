@@ -33,7 +33,6 @@ public class GestorPapa {
 
                 //TOda la informacion de las papas
                 //EJM System.out.println("Especie: " + miPapa.getEspecie());
-                
             }
         } else {
             System.out.println("Actualmente no existen registros de estudiantes");
@@ -43,17 +42,36 @@ public class GestorPapa {
     private void buscarPapa() {
         miPapaDAO = new PapaDAO();
         //Toca poner un identificador??
-        String codigo = "202210200030";
+        String codigo = "";
         PapaVO papaEncontrada = miPapaDAO.consultarPapa();
         if (papaEncontrada != null) {
-            
+
             //Lo mismo del metodo de alleba pero System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
-
-
         } else {
             //ventana de error
         }
     }
 
+    private void registrarPapa() {
+        miPapaDAO = new PapaDAO();
+        PapaVO registroPapa1 = new PapaVO();
+        //Logica para registrar la papa
+        /*
+        registroPapa1.setNombreComun();
+        registroPapa1.setEspecie();
+        registroPapa1.setZonaProduccion();
+        registroPapa1.setHabitoCrecimiento();
+        registroPapa1.setFloracion();
+        registroPapa1.setBaya();
+        registroPapa1.setTuberculo();
+
+
+         */
+    }
+
+    //Necesito ver bien la presentacion
+    private void eliminarPapa() {
+
+    }
 
 }
