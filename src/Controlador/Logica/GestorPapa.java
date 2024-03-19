@@ -5,6 +5,7 @@
 package Controlador.Logica;
 
 import Controlador.DAO.PapaDAO;
+import Modelo.ArchivoPropiedades;
 import Modelo.PapaVO;
 import java.util.ArrayList;
 
@@ -15,13 +16,23 @@ import java.util.ArrayList;
 public class GestorPapa {
 
     private PapaDAO papaDAO;
+    private int iteradorPapas = 1;
 
     public GestorPapa() {
-        obtenerRegistros();
-        buscarPapa();
         this.papaDAO = new PapaDAO();
     }
 
+    private void agregarPapa(String nombreComun,String especie,
+            String zonaProduccion, String habitoCrecimiento, 
+            String floracion, String bayas, String tuberculos)
+    {
+        
+        
+        
+        
+    }
+    
+    
     private void obtenerRegistros() {
         PapaVO miPapa;
         ArrayList<PapaVO> listaDePapas = papaDAO.listaDePapas();
@@ -40,6 +51,7 @@ public class GestorPapa {
         }
     }
 
+            
     private void buscarPapa() {
         papaDAO = new PapaDAO();
         //Toca poner un identificador??
@@ -54,6 +66,20 @@ public class GestorPapa {
             //ventana de error
         }
     }
-
+    
+    
+    public void cargarPapas(ArchivoPropiedades propiedades, Controler controler){
+                
+        if(propiedades.getData("Papa"+this.iteradorPapas) == null)
+            //iniciar CRUD
+            return;
+            
+        String[] pData = propiedades.getData("Papa"+iteradorPapas).split(",");
+            
+        controler.crearVentanaInicial(pData[0],pData[1],pData[2], this.iteradorPapas);
+            
+        iteradorPapas++;
+            
+    }
 
 }
