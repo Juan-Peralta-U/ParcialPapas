@@ -242,6 +242,11 @@ public class CRUDFrame extends javax.swing.JFrame {
 
         comboBusqueda.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
         comboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tipo de búsqueda--" }));
+        comboBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBusquedaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelGestionarLayout = new javax.swing.GroupLayout(panelGestionar);
         panelGestionar.setLayout(panelGestionarLayout);
@@ -340,6 +345,10 @@ public class CRUDFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void comboBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBusquedaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

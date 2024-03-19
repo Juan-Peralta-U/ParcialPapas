@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class GestorPapa {
 
     private PapaDAO papaDAO;
-    
+
     private int iteradorPapas = 1;
 
     public GestorPapa() {
@@ -26,19 +26,10 @@ public class GestorPapa {
     }
 
     private void obtenerRegistros() {
-        PapaVO miPapa;
         ArrayList<PapaVO> listaDePapas = papaDAO.listaDePapas();
-        if (listaDePapas.size() > 0) {
-            int numeroEstudiante = 0;
-            for (int i = 0; i < listaDePapas.size(); i++) {
-                numeroEstudiante++;
-                miPapa = listaDePapas.get(i);
-
-                //TOda la informacion de las papas
-                //EJM System.out.println("Especie: " + miPapa.getEspecie());
-            }
-        } else {
-            System.out.println("Actualmente no existen registros de estudiantes");
+        for (PapaVO papa : listaDePapas) {
+            //TOda la informacion de las papas
+            //EJM System.out.println("Especie: " + miPapa.getEspecie());
         }
     }
 
@@ -64,7 +55,6 @@ public class GestorPapa {
         }
 
         String[] pData = propiedades.getData("Papa" + iteradorPapas).split(",");
-        // inserta Datos en sql 
         controler.crearVentanaInicial(pData[0], pData[1], pData[2], this.iteradorPapas);
 
         iteradorPapas++;
@@ -72,8 +62,7 @@ public class GestorPapa {
 
     public void registrarPapa(String nombreComun, String especie,
             String zonaProduccion, String habitoCrecimiento,
-            String floracion, String bayas, String tuberculos) 
-    {
+            String floracion, String bayas, String tuberculos) {
 
         PapaVO registroPapa = new PapaVO();
 
@@ -84,22 +73,21 @@ public class GestorPapa {
         registroPapa.setFloracion(floracion);
         registroPapa.setBayas(bayas);
         registroPapa.setTuberculos(tuberculos);
-        
+
         papaDAO.insertarDatos(registroPapa);
-        
+
     }
 
-    
     //Necesito ver bien la presentacion
     private void eliminarPapa() {
 
     }
-    
+
     public void mostrarPapas(JTable tabla) {
-        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         ArrayList<PapaVO> lista = papaDAO.listaDePapas();
         String[] datos = new String[7];
-        for(PapaVO p : lista){
+        for (PapaVO p : lista) {
             datos[0] = p.getNombreComun();
             datos[1] = p.getEspecie();
             datos[2] = p.getZonaProduccion();
@@ -109,7 +97,7 @@ public class GestorPapa {
             datos[6] = p.getTuberculos();
             modelo.addRow(datos);
         }
-        
+
     }
-    
+
 }
