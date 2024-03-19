@@ -221,9 +221,17 @@ public class CRUDFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "Nombre", "Especie", "ZonaProduccion", "HabCrecimiento", "Floracion", "Bayas", "Tuberculos"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaMuestra);
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
