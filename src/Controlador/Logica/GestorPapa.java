@@ -14,17 +14,17 @@ import java.util.ArrayList;
  */
 public class GestorPapa {
 
-    private PapaDAO miPapaDAO;
+    private PapaDAO papaDAO;
 
     public GestorPapa() {
         obtenerRegistros();
         buscarPapa();
+        this.papaDAO = new PapaDAO();
     }
 
     private void obtenerRegistros() {
-        miPapaDAO = new PapaDAO();
         PapaVO miPapa;
-        ArrayList<PapaVO> listaDePapas = miPapaDAO.listaDePapas();
+        ArrayList<PapaVO> listaDePapas = papaDAO.listaDePapas();
         if (listaDePapas.size() > 0) {
             int numeroEstudiante = 0;
             for (int i = 0; i < listaDePapas.size(); i++) {
@@ -41,10 +41,10 @@ public class GestorPapa {
     }
 
     private void buscarPapa() {
-        miPapaDAO = new PapaDAO();
+        papaDAO = new PapaDAO();
         //Toca poner un identificador??
         String codigo = "202210200030";
-        PapaVO papaEncontrada = miPapaDAO.consultarPapa();
+        PapaVO papaEncontrada = papaDAO.consultarPapa();
         if (papaEncontrada != null) {
             
             //Lo mismo del metodo de alleba pero System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
