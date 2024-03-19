@@ -8,6 +8,8 @@ import Controlador.DAO.PapaDAO;
 import Modelo.ArchivoPropiedades;
 import Modelo.PapaVO;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -93,17 +95,21 @@ public class GestorPapa {
 
     }
     
-    public void cargarPapas(ArchivoPropiedades propiedades, Controler controler){
-                
-        if(propiedades.getData("Papa"+this.iteradorPapas) == null)
-            //iniciar CRUD
-            return;
-            
-        String[] pData = propiedades.getData("Papa"+iteradorPapas).split(",");
-            
-        controler.crearVentanaInicial(pData[0],pData[1],pData[2], this.iteradorPapas);
-            
-        iteradorPapas++;
+    public void mostrarPapas(JTable tabla) {
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        ArrayList<PapaVO> lista = papaDAO.listaDePapas();
+        String[] datos = new String[7];
+        for(PapaVO p : lista){
+            datos[0] = p.getNombreComun();
+            datos[1] = p.getEspecie();
+            datos[2] = p.getZonaProduccion();
+            datos[3] = p.getHabitoCrecimiento();
+            datos[4] = p.getFloracion();
+            datos[5] = p.getBayas();
+            datos[6] = p.getTuberculos();
+            modelo.addRow(datos);
+        }
+        
     }
-
+    
 }

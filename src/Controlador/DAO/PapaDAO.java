@@ -6,6 +6,7 @@ package Controlador.DAO;
  */
 import Modelo.Conexion.Conexion;
 import Modelo.PapaVO;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -72,7 +73,7 @@ public class PapaDAO {
                 papa.setFloracion(rs.getString("Floracion"));
                 papa.setBayas(rs.getString("Bayas"));
                 papa.setTuberculos(rs.getString("Tuberculos"));
-                //misPapas.add(papa);
+                misPapas.add(papa);
             }
             st.close();
             Conexion.desconectar();

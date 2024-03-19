@@ -15,7 +15,8 @@ import java.sql.DriverManager;
 public class Conexion {
 
     private static Connection cn = null;
-    private static String URLBD = "jdbc:mysql://localhost:3308/TallerPapa";
+    //private static String URLBD = "jdbc:mysql://localhost:3308/TallerPapa";
+    private static String URLBD = "jdbc:mysql://localhost:3306/TallerPapa";
     private static String usuario = "root";
     private static String contrasena = "";
 
@@ -23,7 +24,7 @@ public class Conexion {
         try {
             cn = DriverManager.getConnection(URLBD, usuario, contrasena);
         } catch (SQLException ex) {
-            System.out.println("No se puede cargar el controlado");
+            System.out.println("No se puede cargar el controlador");
         }
         return cn;
     }
