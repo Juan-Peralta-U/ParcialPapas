@@ -62,6 +62,8 @@ public class CRUDFrame extends javax.swing.JFrame {
         fieldDato = new javax.swing.JTextField();
         comboDatos = new javax.swing.JComboBox<>();
         labelTitulo = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
+        btnLimpiar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,10 +76,10 @@ public class CRUDFrame extends javax.swing.JFrame {
         labZonaProd.setText("Zona de producción:");
 
         labBayas.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
-        labBayas.setText("Bayas");
+        labBayas.setText("Bayas:");
 
         labHabito.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
-        labHabito.setText("Hábito de crecimiento");
+        labHabito.setText("Hábito de crecimiento:");
 
         txAreaFloracion.setColumns(20);
         txAreaFloracion.setLineWrap(true);
@@ -85,7 +87,7 @@ public class CRUDFrame extends javax.swing.JFrame {
         jScrollPane6.setViewportView(txAreaFloracion);
 
         labTuberculos.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
-        labTuberculos.setText("Tubérculos");
+        labTuberculos.setText("Tubérculos:");
 
         fieldNombre.setEditable(false);
         fieldNombre.setFocusable(false);
@@ -112,7 +114,7 @@ public class CRUDFrame extends javax.swing.JFrame {
         labNombre.setText("Nombre:");
 
         labFloracion.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
-        labFloracion.setText("Floración");
+        labFloracion.setText("Floración:");
 
         labEspecie.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         labEspecie.setText("Especie:");
@@ -121,6 +123,7 @@ public class CRUDFrame extends javax.swing.JFrame {
         btnInsertar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnInsertar.setForeground(new java.awt.Color(13, 24, 89));
         btnInsertar.setText("Insertar");
+        btnInsertar.setActionCommand("InsertarCRUD");
         btnInsertar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(13, 24, 89), 1, true));
         btnInsertar.setContentAreaFilled(false);
 
@@ -188,16 +191,13 @@ public class CRUDFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInsertarLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(panelInsertarLayout.createSequentialGroup()
-                        .addComponent(labBayas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)))
+                    .addComponent(labBayas)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labTuberculos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -251,24 +251,22 @@ public class CRUDFrame extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
+                        .addComponent(comboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
-                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
-                                .addComponent(comboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldDato, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(fieldDato, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(114, 114, 114))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
+                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addGap(12, 12, 12))))
         );
         panelGestionarLayout.setVerticalGroup(
             panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,14 +294,34 @@ public class CRUDFrame extends javax.swing.JFrame {
         labelTitulo.setFont(new java.awt.Font("Nirmala UI", 1, 36)); // NOI18N
         labelTitulo.setText("Papa Manager");
 
+        btnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(13, 24, 89));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setActionCommand("LimpiarCRUD");
+        btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 24, 89)));
+        btnLimpiar.setContentAreaFilled(false);
+
+        btnLimpiar1.setBackground(new java.awt.Color(255, 255, 255));
+        btnLimpiar1.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btnLimpiar1.setForeground(new java.awt.Color(13, 24, 89));
+        btnLimpiar1.setText("Salir");
+        btnLimpiar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 24, 89)));
+        btnLimpiar1.setContentAreaFilled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panePaneles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
@@ -311,7 +329,10 @@ public class CRUDFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panePaneles, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -361,6 +382,8 @@ public class CRUDFrame extends javax.swing.JFrame {
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnInsertar;
+    public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnLimpiar1;
     public javax.swing.JComboBox<String> comboBusqueda;
     public javax.swing.JComboBox<String> comboDatos;
     public javax.swing.JComboBox<String> comboZonaProd;

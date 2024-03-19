@@ -74,6 +74,7 @@ public class InitialFrame extends javax.swing.JFrame {
         btnLimpiar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnLimpiar.setForeground(new java.awt.Color(13, 24, 89));
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setActionCommand("LimpiarInitial");
         btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 24, 89)));
         btnLimpiar.setContentAreaFilled(false);
 
@@ -90,7 +91,7 @@ public class InitialFrame extends javax.swing.JFrame {
         fieldEspecie.setFocusable(false);
 
         labTitulo.setFont(new java.awt.Font("Nirmala UI", 1, 36)); // NOI18N
-        labTitulo.setText("Insertar datos [1/6]");
+        labTitulo.setText("Insertar datos:");
 
         fieldZonaProd.setEditable(false);
         fieldZonaProd.setFocusable(false);
