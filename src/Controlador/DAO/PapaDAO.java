@@ -4,8 +4,6 @@ package Controlador.DAO;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
 import Modelo.Conexion.Conexion;
 import Modelo.PapaVO;
 import java.sql.Connection;
@@ -79,9 +77,60 @@ public class PapaDAO {
             st.close();
             Conexion.desconectar();
         } catch (SQLException ex) {
-           //Ventana error consulta
+            //Ventana error consulta
         }
         return misPapas;
+    }
+
+    public void insertarDatos(PapaVO papa) {
+        try {
+            con = (Connection) Conexion.getConexion();
+            st = con.createStatement();
+            String insercion = "INSERT INTO papa VALUES('" + papa.getNombreComun() + ",'" + papa.getEspecie() + ",'" + papa.getZonaProduccion() + "',"
+                    + "'" + papa.getHabitoCrecimiento() + "','" + papa.getFloracion() + "','" + papa.getBayas() + "','" + papa.getTuberculos() + "')";
+            st.executeUpdate(insercion);
+            st.close();
+            Conexion.desconectar();
+        } catch (SQLException ex) {
+            //Ventana error insercion
+        }
+    }
+
+    public boolean eliminarPapa(String nombreComun) {
+        String consulta = "DELETE FROM papa where nombreComun='" + nombreComun + "'";
+        try {
+            con = (Connection) Conexion.getConexion();
+            st = con.createStatement();
+            st.executeUpdate(consulta);
+            st.close();
+            Conexion.desconectar();
+            return true;
+
+        } catch (Exception e) {
+            //Ventana error insercion
+
+        }
+        return false;
+    }
+    
+    public boolean modificarPapa(String nombreComun, String campoModificable, String valorModificado){
+        /*Modo locura pa no tener que hacerlo varias veces
+        *Campo modificable es el campo que se va a modificar de la tabla
+        *El valor modificado sera el nuevo dato o valor que tendrá
+        *Nombre comun es la primary key, el identificador de cada papa
+        */
+        String consulta="update papa set '"+campoModificable+"'='"+valorModificado+"' where nombreComun='"+nombreComun+"' ";
+        try {
+            con=Conexion.getConexion();
+            st=con.createStatement();
+            st.executeUpdate(consulta);
+            st.close();
+            Conexion.desconectar();
+            return true;
+        } catch (SQLException ex) {
+            //ventana error
+        }
+        return false;
     }
 
 }
