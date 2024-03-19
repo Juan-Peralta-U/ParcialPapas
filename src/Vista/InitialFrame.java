@@ -98,7 +98,7 @@ public class InitialFrame extends javax.swing.JFrame {
         fieldEspecie.setFocusable(false);
 
         labTitulo.setFont(new java.awt.Font("Nirmala UI", 1, 36)); // NOI18N
-        labTitulo.setText("Insertar datos [1/6]");
+        labTitulo.setText("Insertar datos:");
 
         fieldZonaProd.setEditable(false);
         fieldZonaProd.setFocusable(false);

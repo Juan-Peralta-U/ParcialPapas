@@ -242,7 +242,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Nirmala UI" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Insertar datos [1/6]"/>
+        <Property name="text" type="java.lang.String" value="Insertar datos:"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

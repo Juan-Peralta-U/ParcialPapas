@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class GestorPapa {
 
     private PapaDAO papaDAO;
+    
     private int iteradorPapas = 1;
 
     public GestorPapa() {
@@ -90,6 +91,19 @@ public class GestorPapa {
     //Necesito ver bien la presentacion
     private void eliminarPapa() {
 
+    }
+    
+    public void cargarPapas(ArchivoPropiedades propiedades, Controler controler){
+                
+        if(propiedades.getData("Papa"+this.iteradorPapas) == null)
+            //iniciar CRUD
+            return;
+            
+        String[] pData = propiedades.getData("Papa"+iteradorPapas).split(",");
+            
+        controler.crearVentanaInicial(pData[0],pData[1],pData[2], this.iteradorPapas);
+            
+        iteradorPapas++;
     }
 
 }
