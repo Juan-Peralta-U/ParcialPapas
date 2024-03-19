@@ -43,6 +43,7 @@ public class Controler implements ActionListener{
     
     
     public void crearVentanaCrud(){
+        this.crudView.btnInsertar.addActionListener(this);
         this.crudView.btnActualizar.addActionListener(this);
         this.crudView.btnConsultar.addActionListener(this);
         this.crudView.btnEliminar.addActionListener(this);
@@ -58,11 +59,27 @@ public class Controler implements ActionListener{
             case "InsertarInitial" ->{
                 this.frameInicial.dispose();
                 this.gestorPapa.cargarPapas(archivoPropiedades, this);
+                this.gestorPapa.registrarPapa(frameInicial.fieldNombre.getText(), 
+                frameInicial.fieldEspecie.getText(), String.valueOf(frameInicial.fieldZonaProd.getText()), 
+                frameInicial.txAreaHabito.getText(), frameInicial.txAreaFloracion.getText(), 
+                frameInicial.txAreaBayas.getText(), frameInicial.txAreaTuberculos.getText());                
             }
             case "LimpiarInitial" ->{
                 this.frameInicial.limpiarFrame();
             }
-            case ""->{
+            case "InsertarCrud"->{
+                this.gestorPapa.registrarPapa(crudView.fieldNombre.getText(), 
+                crudView.fieldEspecie.getText(), String.valueOf(crudView.comboZonaProd.getSelectedItem()), 
+                crudView.txAreaHabito.getText(), crudView.txAreaFloracion.getText(), 
+                crudView.txAreaBayas.getText(), crudView.txAreaTuberculos.getText());
+            }
+            case "ConsultarCrud"->{
+                
+            }
+            case "EliminarCrud"->{
+                
+            }
+            case "ActualizarCrud"->{
                 
             }
             

@@ -112,17 +112,17 @@ public class PapaDAO {
         }
         return false;
     }
-    
-    public boolean modificarPapa(String nombreComun, String campoModificable, String valorModificado){
+
+    public boolean modificarPapa(String nombreComun, String campoModificable, String valorModificado) {
         /*Modo locura pa no tener que hacerlo varias veces
         *Campo modificable es el campo que se va a modificar de la tabla
         *El valor modificado sera el nuevo dato o valor que tendrá
         *Nombre comun es la primary key, el identificador de cada papa
-        */
-        String consulta="update papa set '"+campoModificable+"'='"+valorModificado+"' where nombreComun='"+nombreComun+"' ";
+         */
+        String consulta = "update papa set '" + campoModificable + "'='" + valorModificado + "' where nombreComun='" + nombreComun + "' ";
         try {
-            con=Conexion.getConexion();
-            st=con.createStatement();
+            con = Conexion.getConexion();
+            st = con.createStatement();
             st.executeUpdate(consulta);
             st.close();
             Conexion.desconectar();

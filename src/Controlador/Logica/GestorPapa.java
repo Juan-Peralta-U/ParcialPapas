@@ -67,20 +67,23 @@ public class GestorPapa {
         iteradorPapas++;
     }
 
-    private void registrarPapa(String nombreComun, String especie,
+    public void registrarPapa(String nombreComun, String especie,
             String zonaProduccion, String habitoCrecimiento,
             String floracion, String bayas, String tuberculos) 
     {
 
-        PapaVO registroPapa1 = new PapaVO();
+        PapaVO registroPapa = new PapaVO();
 
-        registroPapa1.setNombreComun(nombreComun);
-        registroPapa1.setEspecie(especie);
-        registroPapa1.setZonaProduccion(zonaProduccion);
-        registroPapa1.setHabitoCrecimiento(habitoCrecimiento);
-        registroPapa1.setFloracion(floracion);
-        registroPapa1.setBayas(bayas);
-        registroPapa1.setTuberculos(tuberculos);
+        registroPapa.setNombreComun(nombreComun);
+        registroPapa.setEspecie(especie);
+        registroPapa.setZonaProduccion(zonaProduccion);
+        registroPapa.setHabitoCrecimiento(habitoCrecimiento);
+        registroPapa.setFloracion(floracion);
+        registroPapa.setBayas(bayas);
+        registroPapa.setTuberculos(tuberculos);
+        
+        papaDAO.insertarDatos(registroPapa);
+        
     }
 
     
