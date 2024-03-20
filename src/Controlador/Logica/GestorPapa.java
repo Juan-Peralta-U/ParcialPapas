@@ -5,6 +5,7 @@
 package Controlador.Logica;
 
 import Controlador.DAO.PapaDAO;
+import Modelo.ArchivoAleatorio;
 import Modelo.ArchivoPropiedades;
 import Modelo.PapaVO;
 import java.util.ArrayList;
@@ -20,13 +21,17 @@ public class GestorPapa {
 
     private PapaDAO papaDAO;
 
+    private Controler controler;
+
     private int iteradorPapas = 1;
 
-    public GestorPapa() {
+    public GestorPapa(Controler controler) {
         this.papaDAO = new PapaDAO();
+        this.controler = controler;
     }
 
-    public void mostrarPapasCombo(JComboBox<String> combo, String campo) {
+    public void mostrarPapasCombo(String campo) {
+        JComboBox combo = this.controler.getCrudView().comboDatos;
         combo.removeAllItems();
         ArrayList<String> lista = papaDAO.listaColumnaPapa(campo);
 
@@ -39,7 +44,7 @@ public class GestorPapa {
         }
     }
 
-    public void cargarPapas(ArchivoPropiedades propiedades, Controler controler) {
+    public void cargarPapas(ArchivoPropiedades propiedades) {
 
         if (propiedades.getData("Papa" + this.iteradorPapas) == null) {
             controler.crearVentanaCrud();
@@ -47,6 +52,14 @@ public class GestorPapa {
         }
 
         String[] pData = propiedades.getData("Papa" + iteradorPapas).split(",");
+
+        
+        if (!this.papaDAO.listaDePapas("nombreComun", pData[0]).isEmpty()){
+            iteradorPapas++;
+            cargarPapas(propiedades);
+            return;
+        }
+        
         controler.crearVentanaInicial(pData[0], pData[1], pData[2], this.iteradorPapas);
 
         iteradorPapas++;
@@ -66,21 +79,34 @@ public class GestorPapa {
         registroPapa.setBayas(bayas);
         registroPapa.setTuberculos(tuberculos);
 
-        papaDAO.insertarDatos(registroPapa);
+        if (papaDAO.insertarDatos(registroPapa)) {
+            controler.mensajeVentanaActual("Papa registrada");
+            return;
+        }
 
+        controler.mensajeVentanaActual("Error al registrar papa");
     }
 
-    public boolean eliminarPapa(String nombreComun, JComboBox<String> combo) {
-        boolean b = papaDAO.eliminarPapa(nombreComun);
-        mostrarPapasCombo(combo, "nombreComun");
-        return b;
+    public void eliminarPapa(String nombreComun) {
+        if (papaDAO.eliminarPapa(nombreComun)) {
+            mostrarPapasCombo("nombreComun");
+            mostrarPapas("nombreComun", "");
+            controler.mensajeVentanaActual("Papa eliminada");
+            return;
+        }
+        controler.mensajeVentanaActual("Error al eliminar papa");
     }
 
-    public boolean actualizarPapa(String nombreComun, String[] valores) {
-        return papaDAO.modificarPapa(nombreComun, valores);
+    public void actualizarPapa(String nombreComun, String[] valores) {
+        if (papaDAO.modificarPapa(nombreComun, valores)) {
+            controler.mensajeVentanaActual("Papa actualizada");
+            return;
+        }
+        controler.mensajeVentanaActual("Error al actualizar papa");
     }
 
-    public void mostrarPapas(JTable tabla, String campo, String valor) {
+    public void mostrarPapas(String campo, String valor) {
+        JTable tabla = this.controler.getCrudView().tablaMuestra;
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.setRowCount(0);
         tabla.setModel(modelo);
@@ -97,6 +123,16 @@ public class GestorPapa {
             modelo.addRow(datos);
         }
 
+    }
+    
+    public void guardarResultados(ArchivoAleatorio archivoAleatorio){
+        int i=0;
+        //for(String dato : arrayList<String>)
+        for (PapaVO papa: this.papaDAO.listaDePapas("nombreComun", "%%")){
+            archivoAleatorio.escribir(papa.getNombreComun(), papa.getEspecie(), 
+            papa.getZonaProduccion(), papa.getHabitoCrecimiento(), papa.getFloracion(), papa.getBayas(), papa.getTuberculos());
+            
+        }
     }
 
 }

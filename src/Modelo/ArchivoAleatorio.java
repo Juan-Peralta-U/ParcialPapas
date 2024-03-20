@@ -24,13 +24,15 @@ public class ArchivoAleatorio {
 
     public ArchivoAleatorio(File Fl) {
         this.canReg = 0;
-        this.tamañoRegistro = 1124;
+        this.tamañoRegistro = 1484;
 
         /*
-        (20+2+20+60+180+60+200+20)*2=1124
+        4+(20+20+100+150+150+150+150)*2=1484
          */
         try {
             Rf = new RandomAccessFile(Fl, "rw");
+            Rf.setLength(0);
+          
 
         } catch (Exception e) {
             System.exit(0);
@@ -43,13 +45,16 @@ public class ArchivoAleatorio {
         try {
             //el tamaño de caracter esta basado en el documento del parcial (NO es inventado)
             this.clave = Math.round(Rf.length() / this.tamañoRegistro) + 1;
+            System.out.println(tamañoRegistro + " " + Rf.length());
+            System.out.println(clave);
+            
             nombreComun = this.completarTamañoBytes(nombreComun, 20);
             especie = this.completarTamañoBytes(especie, 20);
-            zonaProduccion = this.completarTamañoBytes(zonaProduccion, 20);
-            habitoCrecimiento = this.completarTamañoBytes(habitoCrecimiento, 60);
-            floracion = this.completarTamañoBytes(floracion, 180);
-            bayas = this.completarTamañoBytes(bayas, 60);
-            tuberculos = this.completarTamañoBytes(tuberculos, 200);
+            zonaProduccion = this.completarTamañoBytes(zonaProduccion, 100);
+            habitoCrecimiento = this.completarTamañoBytes(habitoCrecimiento, 150);
+            floracion = this.completarTamañoBytes(floracion, 150);
+            bayas = this.completarTamañoBytes(bayas, 150);
+            tuberculos = this.completarTamañoBytes(tuberculos, 150);
 
             if (Rf.length() != 0) {
                 Rf.seek(Rf.length());
@@ -86,6 +91,7 @@ public class ArchivoAleatorio {
 
             for (int r = 0; r < canReg; r++) {
                 clave = Rf.readInt();
+                System.out.println(clave);
                 nombreComun = "";
                 especie = "";
                 zonaProduccion = "";
@@ -102,23 +108,23 @@ public class ArchivoAleatorio {
                     especie += Rf.readChar();
                 }
 
-                for (int i = 0; i < 10; ++i) {
+                for (int i = 0; i < 100; ++i) {
                     zonaProduccion += Rf.readChar();
                 }
 
-                for (int i = 0; i < 10; ++i) {
+                for (int i = 0; i < 150; ++i) {
                     habitoCrecimiento += Rf.readChar();
                 }
 
-                for (int i = 0; i < 10; ++i) {
+                for (int i = 0; i < 150; ++i) {
                     floracion += Rf.readChar();
                 }
 
-                for (int i = 0; i < 10; ++i) {
+                for (int i = 0; i < 150; ++i) {
                     bayas += Rf.readChar();
                 }
 
-                for (int i = 0; i < 10; ++i) {
+                for (int i = 0; i < 150; ++i) {
                     tuberculos += Rf.readChar();
                 }
                 respuesta += ("\n" + clave + "\t\t" + nombreComun + "\t\t"  + especie + "\t\t" + zonaProduccion + "\t" + habitoCrecimiento + "\t" + floracion + "\t" + bayas + "\t" + tuberculos + "\n");

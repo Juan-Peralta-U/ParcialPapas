@@ -23,15 +23,21 @@ public class PapaDAO {
     private Statement st;
     private ResultSet rs;
 
+    /**
+    *Constructor de la clase papaDAO, inicializa los atributo en null
+     */
     public PapaDAO() {
         con = null;
         st = null;
         rs = null;
     }
 
-    public PapaVO consultarPapa() {
+    /**
+    *Metodo no usado, es innecesario hasta el momento
+     */
+    public PapaVO consultarPapa(String nombre) {
         PapaVO papa = null;
-        String consulta = "SELECT * FROM papas ";
+        String consulta = "SELECT * FROM papas WHERE nombreComun='"+nombre+"' ";
         try {
             con = (Connection) Conexion.getConexion();
             st = con.createStatement();
@@ -55,8 +61,13 @@ public class PapaDAO {
         }
         return papa;
     }
-    
-    public ArrayList<String> listaColumnaPapa(String columna){
+
+    /**
+    *El metodo listaColumnaPapa de tipo ArrayList se encarga de traer los datos no duplicados de una columna de la tabla papa y me crea un arraylist con esos datos
+    *@param Recibe un campo string que sera correspondiente a los campos de la tabla
+    *@return Retorna un arraylist Datos que contendra todos los registros de la columna de la tabla que no esten repetidos
+     */
+    public ArrayList<String> listaColumnaPapa(String columna) {
         ArrayList<String> datos = new ArrayList<>();
         String consulta = "SELECT DISTINCT " + columna + " FROM papa";
         try {
@@ -74,15 +85,20 @@ public class PapaDAO {
         return datos;
     }
 
+    /*Metodo listaPapa, a partir de la conexion con la base de datos, usamos sentencia SQL que la traducira st para poder ejecutar su funcion
+    *que sera mostrar todos los campos de la tabla papa en la base de datos que contengan una caracteristica en especial que definimos
+    *@param recibe el campo y las caracteristicas especificas para poder consultar la tabla papas
+    *@return Instancia y retorna un objeto misPapas
+     */
     public ArrayList<PapaVO> listaDePapas(String campo, String valor) {
         ArrayList<PapaVO> misPapas = new ArrayList<PapaVO>();
-        String consulta = "SELECT * FROM papa WHERE "+ campo + " LIKE '"+ valor +"'";
+        String consulta = "SELECT * FROM papa WHERE " + campo + " LIKE '" + valor + "'";
         try {
             con = Conexion.getConexion();
             st = con.createStatement();
             rs = st.executeQuery(consulta);
             while (rs.next()) {
-                //Mismo error con el constructor
+
                 PapaVO papa = new PapaVO();
                 papa.setNombreComun(rs.getString("nombreComun"));
                 papa.setEspecie(rs.getString("especie"));
@@ -101,21 +117,30 @@ public class PapaDAO {
         return misPapas;
     }
 
-    public void insertarDatos(PapaVO papa) {
+    /**
+    *EL metodo Inserta los datos de la tabla papa a la BD
+    *@param recibe el objeto papa de la clase PapaVO
+     */
+    public boolean insertarDatos(PapaVO papa) {
         try {
             con = (Connection) Conexion.getConexion();
             st = con.createStatement();
             String insercion = "INSERT INTO papa VALUES('" + papa.getNombreComun() + "','" + papa.getEspecie() + "','" + papa.getZonaProduccion() + "','"
-            + papa.getHabitoCrecimiento() + "','" + papa.getFloracion() + "','" + papa.getBayas() + "','" + papa.getTuberculos() + "')";
+                    + papa.getHabitoCrecimiento() + "','" + papa.getFloracion() + "','" + papa.getBayas() + "','" + papa.getTuberculos() + "')";
             st.executeUpdate(insercion);
             st.close();
             Conexion.desconectar();
+            return true;
         } catch (SQLException ex) {
-            System.out.println(ex);
-            //Ventana error insercion
+            return false;
         }
     }
 
+    /*
+    *EL metodo Elimina la fila  de la tabla papa a la BD
+    *@param recibe el nombreComun el cual es la primary key de la tabla, es unico e irrepetible
+    *@return retorna un booleano que define la confirmacion o denegacion del proceso
+     */
     public boolean eliminarPapa(String nombreComun) {
         String consulta = "DELETE FROM papa where nombreComun='" + nombreComun + "'";
         try {
@@ -133,13 +158,14 @@ public class PapaDAO {
         return false;
     }
 
+    /*
+    *Permite modificar los campos de registro de una papa seleccionada exeptuando el nombreComun que es la primarykey
+    *@param recibe el nombre comun y una lista que tendra los campos modificados segun suna posicion organizada
+    *@return retorna un boleano que confirma o deniega el exito del proceso
+    */
     public boolean modificarPapa(String nombreComun, String[] valores) {
-        /*Modo locura pa no tener que hacerlo varias veces
-        *Campo modificable es el campo que se va a modificar de la tabla
-        *El valor modificado sera el nuevo dato o valor que tendrá
-        *Nombre comun es la primary key, el identificador de cada papa
-         */
-        if(valores.length != 6){
+
+        if (valores.length != 6) {
             return false;
         }
         String consulta = "UPDATE papa SET especie = '" + valores[0] + "',"

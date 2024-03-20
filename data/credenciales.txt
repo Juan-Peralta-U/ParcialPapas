@@ -1,0 +1,3 @@
+URLBD = "jdbc:mysql://localhost:3306/TallerPapa"
+usuario = "root"
+contrasena = ""
