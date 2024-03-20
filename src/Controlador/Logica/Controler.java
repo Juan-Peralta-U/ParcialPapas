@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador.Logica;
+
 import Modelo.ArchivoPropiedades;
 import Vista.CRUDFrame;
 import Vista.FileChooser;
@@ -14,24 +15,23 @@ import java.awt.event.ActionListener;
  *
  * @author Juan
  */
-public class Controler implements ActionListener{
-    
+public class Controler implements ActionListener {
+
     private CRUDFrame crudView;
     private GestorPapa gestorPapa;
     private ArchivoPropiedades archivoPropiedades;
     InitialFrame frameInicial;
-    
-    public Controler(){
+
+    public Controler() {
         this.crudView = new CRUDFrame();
         this.gestorPapa = new GestorPapa();
         this.archivoPropiedades = new ArchivoPropiedades(
-        new FileChooser("Selecciona archivo propiedades").getFile());
+                new FileChooser("Selecciona archivo propiedades").getFile());
         this.gestorPapa.cargarPapas(archivoPropiedades, this);
     }
 
-    public void crearVentanaInicial(String nombre,String especie,
-            String zonaProduccion, int papaActual)
-    {  
+    public void crearVentanaInicial(String nombre, String especie,
+            String zonaProduccion, int papaActual) {
         frameInicial = new InitialFrame();
         frameInicial.setLocationRelativeTo(null);
         frameInicial.btnInsertar.addActionListener(this);
@@ -41,71 +41,189 @@ public class Controler implements ActionListener{
         frameInicial.fieldEspecie.setText(especie);
         frameInicial.fieldZonaProd.setText(zonaProduccion);
     }
-    
-    
-    public void crearVentanaCrud(){
+
+    public void crearVentanaCrud() {
         this.crudView.btnInsertar.addActionListener(this);
         this.crudView.btnActualizar.addActionListener(this);
         this.crudView.btnConsultar.addActionListener(this);
         this.crudView.btnEliminar.addActionListener(this);
         this.crudView.comboBusqueda.addActionListener(this);
+        this.crudView.btnLimpiar.addActionListener(this);
+        this.crudView.btnSalir.addActionListener(this);
         this.crudView.setLocationRelativeTo(null);
         this.crudView.setVisible(true);
-        this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra, String.valueOf(this.crudView.comboBusqueda.getSelectedItem()),"%%");
+        this.crudView.comboDatos.setEnabled(false);
+        this.crudView.btnEliminar.setEnabled(false);
+        this.crudView.btnActualizar.setEnabled(false);
+        this.crudView.comboBusqueda.setSelectedIndex(0);
+        this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra, String.valueOf(this.crudView.comboBusqueda.getSelectedItem()), "%%");
     }
-    
-    
+
+    public boolean ValidarEspaciosInitial() {
+        if (frameInicial.txAreaBayas.getText().isEmpty()
+                || frameInicial.txAreaFloracion.getText().isEmpty()
+                || frameInicial.txAreaHabito.getText().isEmpty()
+                || frameInicial.txAreaTuberculos.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean ValidarEspaciosCreate() {
+        if (crudView.fieldNombre.getText().isEmpty()
+                || crudView.fieldEspecie.getText().isEmpty()
+                || crudView.txAreaBayas.getText().isEmpty()
+                || crudView.txAreaFloracion.getText().isEmpty()
+                || crudView.txAreaHabito.getText().isEmpty()
+                || crudView.txAreaTuberculos.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean ValidarEspaciosJTable() {
+        if (crudView.tablaMuestra.getModel().getValueAt(0, 1).equals("")
+                || crudView.tablaMuestra.getModel().getValueAt(0, 2).equals("")
+                || crudView.tablaMuestra.getModel().getValueAt(0, 3).equals("")
+                || crudView.tablaMuestra.getModel().getValueAt(0, 4).equals("")
+                || crudView.tablaMuestra.getModel().getValueAt(0, 5).equals("")
+                || crudView.tablaMuestra.getModel().getValueAt(0, 6).equals("")) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        switch(e.getActionCommand()){
-                                   
-            case "InsertarInitial" ->{
-                this.gestorPapa.registrarPapa(frameInicial.fieldNombre.getText(), 
-                frameInicial.fieldEspecie.getText(), frameInicial.fieldZonaProd.getText(), 
-                frameInicial.txAreaHabito.getText(), frameInicial.txAreaFloracion.getText(), 
-                frameInicial.txAreaBayas.getText(), frameInicial.txAreaTuberculos.getText());       
+
+        switch (e.getActionCommand()) {
+
+            case "InsertarInitial" -> {
+                if (!ValidarEspaciosInitial()) {
+                    frameInicial.mensajeEmergente("Complete todos los campos");
+                    return;
+                }
+
+                this.gestorPapa.registrarPapa(frameInicial.fieldNombre.getText(),
+                        frameInicial.fieldEspecie.getText(), frameInicial.fieldZonaProd.getText(),
+                        frameInicial.txAreaHabito.getText(), frameInicial.txAreaFloracion.getText(),
+                        frameInicial.txAreaBayas.getText(), frameInicial.txAreaTuberculos.getText());
                 this.frameInicial.dispose();
                 this.gestorPapa.cargarPapas(archivoPropiedades, this);
-                         
+
             }
-            case "LimpiarInitial" ->{
+            case "LimpiarInitial" -> {
                 this.frameInicial.limpiarFrame();
             }
-            case "InsertarCRUD"->{
+            case "InsertarCRUD" -> {
+                if (!ValidarEspaciosCreate()) {
+                    crudView.mensajeEmergente("Complete todos los campos");
+                    return;
+                }
                 this.gestorPapa.registrarPapa(crudView.fieldNombre.getText(),
-                crudView.fieldEspecie.getText(), String.valueOf(crudView.comboZonaProd.getSelectedItem()), 
-                crudView.txAreaHabito.getText(), crudView.txAreaFloracion.getText(), 
-                crudView.txAreaBayas.getText(), crudView.txAreaTuberculos.getText());
+                        crudView.fieldEspecie.getText(), String.valueOf(crudView.comboZonaProd.getSelectedItem()),
+                        crudView.txAreaHabito.getText(), crudView.txAreaFloracion.getText(),
+                        crudView.txAreaBayas.getText(), crudView.txAreaTuberculos.getText());
             }
-            
-            case "comboBoxBuscar"->{
-                if(this.crudView.comboBusqueda.getSelectedIndex()>2){
+
+            case "comboBoxBuscar" -> {
+                this.crudView.comboDatos.setEnabled(true);
+
+                if (this.crudView.comboBusqueda.getSelectedIndex() > 2) {
                     this.crudView.comboDatos.setVisible(false);
                     this.crudView.fieldDato.setVisible(true);
                     this.crudView.repaint();
                     return;
                 }
+
+                if (crudView.comboBusqueda.getSelectedIndex() == 2) {
+
+                    crudView.comboDatos.removeAllItems();
+                    String[] zonas = {"Cundinamarca", "Nariño",
+                        "Antioquia", "Boyaca",
+                        "Santander", "Cauca",
+                        "Tolima", "Caldas"};
+
+                    for (String s : zonas) {
+                        crudView.comboDatos.addItem(s);
+                    }
+                }
+
+                if (crudView.comboBusqueda.getSelectedIndex() < 2) {
+                    gestorPapa.mostrarPapasCombo(crudView.comboDatos, String.valueOf(crudView.comboBusqueda.getSelectedItem()));
+                }
                 
+                this.crudView.btnEliminar.setEnabled(false);
+                this.crudView.btnActualizar.setEnabled(false);
                 this.crudView.comboDatos.setVisible(true);
                 this.crudView.fieldDato.setVisible(false);
                 this.crudView.repaint();
             }
-            
-            case "ConsultarCRUD"->{
-                this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra, 
-                String.valueOf(this.crudView.comboBusqueda.getSelectedItem()).split(" ")[0], //obtiene solo la primera sentencia pegada de mi model
-                "%"+this.crudView.fieldDato.getText()+"%");
+
+            case "ConsultarCRUD" -> {
+
+                if ((crudView.comboDatos.getSelectedItem() + "").equals("-- No hay registros --")) {
+                    return;
+                }
+
+                if (crudView.comboBusqueda.getSelectedIndex() == 0) {
+                    crudView.mensajeEmergente("Si desea actualizar, modifique valores en la tabla");
+                    this.crudView.btnEliminar.setEnabled(true);
+                    this.crudView.btnActualizar.setEnabled(true);
+                }
+
+                if (crudView.comboBusqueda.getSelectedIndex() < 3) {
+                    gestorPapa.mostrarPapas(crudView.tablaMuestra,
+                            String.valueOf(crudView.comboBusqueda.getSelectedItem()),
+                            String.valueOf(crudView.comboDatos.getSelectedItem()));
+                    return;
+                }
+
+                this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra,
+                        String.valueOf(this.crudView.comboBusqueda.getSelectedItem()).split(" ")[0], //obtiene solo la primera sentencia pegada de mi model
+                        "%" + this.crudView.fieldDato.getText() + "%");
             }
-            case "EliminarCRUD"->{
-                
+
+            case "EliminarCRUD" -> {
+                this.crudView.btnEliminar.setEnabled(false);
+                this.crudView.btnActualizar.setEnabled(false);
+
+                if (gestorPapa.eliminarPapa(String.valueOf(crudView.comboDatos.getSelectedItem()),
+                        crudView.comboDatos)) {
+                    crudView.mensajeEmergente("Registro eliminado");
+                }
             }
-            case "ActualizarCRUD"->{
-                
+
+            case "ActualizarCRUD" -> {
+                if (!ValidarEspaciosJTable()) {
+                    crudView.mensajeEmergente("Complete los campos a actualizar");
+                    return;
+                }
+
+                this.crudView.btnEliminar.setEnabled(false);
+                this.crudView.btnActualizar.setEnabled(false);
+
+                String[] valores = new String[6];
+                for (int i = 0; i < 6; i++) {
+                    valores[i] = "" + crudView.tablaMuestra.getModel().getValueAt(0, i + 1);
+                }
+
+                if (gestorPapa.actualizarPapa(String.valueOf(crudView.comboDatos.getSelectedItem()),
+                        valores)) {
+                    crudView.mensajeEmergente("Registro actualizado");
+                }
             }
-            
+
+            case "LimpiarCRUD" -> {
+                crudView.limpiarFrame();
+            }
+
+            case "Salir" -> {
+
+            }
+
         }
-        
+
     }
-    
+
 }
