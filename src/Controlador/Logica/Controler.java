@@ -51,7 +51,7 @@ public class Controler implements ActionListener{
         this.crudView.comboBusqueda.addActionListener(this);
         this.crudView.setLocationRelativeTo(null);
         this.crudView.setVisible(true);
-        this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra);
+        this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra, String.valueOf(this.crudView.comboBusqueda.getSelectedItem()),"%%");
     }
     
     
@@ -80,13 +80,22 @@ public class Controler implements ActionListener{
             }
             
             case "comboBoxBuscar"->{
-                if(String.valueOf(this.crudView.comboBusqueda.getSelectedItem()).equals("--Tipo de búsqueda--")){
-                
+                if(this.crudView.comboBusqueda.getSelectedIndex()>2){
+                    this.crudView.comboDatos.setVisible(false);
+                    this.crudView.fieldDato.setVisible(true);
+                    this.crudView.repaint();
+                    return;
                 }
+                
+                this.crudView.comboDatos.setVisible(true);
+                this.crudView.fieldDato.setVisible(false);
+                this.crudView.repaint();
             }
             
             case "ConsultarCRUD"->{
-                
+                this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra, 
+                String.valueOf(this.crudView.comboBusqueda.getSelectedItem()).split(" ")[0], //obtiene solo la primera sentencia pegada de mi model
+                "%"+this.crudView.fieldDato.getText()+"%");
             }
             case "EliminarCRUD"->{
                 

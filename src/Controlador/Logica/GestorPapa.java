@@ -26,12 +26,15 @@ public class GestorPapa {
     }
 
     private void obtenerRegistros() {
+        /*
         ArrayList<PapaVO> listaDePapas = papaDAO.listaDePapas();
         for (PapaVO papa : listaDePapas) {
             //TOda la informacion de las papas
             //EJM System.out.println("Especie: " + miPapa.getEspecie());
         }
+        */
     }
+
 
     private void buscarPapa() {
         papaDAO = new PapaDAO();
@@ -83,9 +86,11 @@ public class GestorPapa {
 
     }
 
-    public void mostrarPapas(JTable tabla) {
+    public void mostrarPapas(JTable tabla, String campo, String valor) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        ArrayList<PapaVO> lista = papaDAO.listaDePapas();
+        modelo.setRowCount(0);
+        tabla.setModel(modelo);
+        ArrayList<PapaVO> lista = papaDAO.listaDePapas(campo, valor);
         String[] datos = new String[7];
         for (PapaVO p : lista) {
             datos[0] = p.getNombreComun();

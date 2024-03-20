@@ -458,10 +458,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="comboBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="comboDatos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldDato" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldDato" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnConsultar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="btnEliminar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
@@ -641,8 +640,12 @@
                   <Font name="Nirmala UI" size="12" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="--Tipo de b&#xfa;squeda--"/>
+                  <StringArray count="5">
+                    <StringItem index="0" value="nombreComun"/>
+                    <StringItem index="1" value="especie"/>
+                    <StringItem index="2" value="zonaProduccion"/>
+                    <StringItem index="3" value="floracion (Color)"/>
+                    <StringItem index="4" value="tuberculos (Forma)"/>
                   </StringArray>
                 </Property>
                 <Property name="actionCommand" type="java.lang.String" value="comboBoxBuscar"/>

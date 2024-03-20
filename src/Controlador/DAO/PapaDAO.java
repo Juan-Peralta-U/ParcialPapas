@@ -56,9 +56,9 @@ public class PapaDAO {
         return papa;
     }
 
-    public ArrayList<PapaVO> listaDePapas() {
+    public ArrayList<PapaVO> listaDePapas(String campo, String valor) {
         ArrayList<PapaVO> misPapas = new ArrayList<PapaVO>();
-        String consulta = "SELECT * FROM papa";
+        String consulta = "SELECT * FROM papa WHERE "+ campo + " LIKE '"+ valor +"'";
         try {
             con = Conexion.getConexion();
             st = con.createStatement();
@@ -78,7 +78,7 @@ public class PapaDAO {
             st.close();
             Conexion.desconectar();
         } catch (SQLException ex) {
-            //Ventana error consulta
+            System.out.println(ex);
         }
         return misPapas;
     }
