@@ -145,6 +145,8 @@ public class Controler implements ActionListener {
 
             case "comboBoxBuscar" -> {
                 this.crudView.comboDatos.setEnabled(true);
+                this.crudView.btnEliminar.setEnabled(false);
+                this.crudView.btnActualizar.setEnabled(false);
 
                 if (this.crudView.comboBusqueda.getSelectedIndex() > 2) {
                     this.crudView.comboDatos.setVisible(false);
@@ -169,9 +171,7 @@ public class Controler implements ActionListener {
                 if (crudView.comboBusqueda.getSelectedIndex() < 2) {
                     gestorPapa.mostrarPapasCombo(String.valueOf(crudView.comboBusqueda.getSelectedItem()));
                 }
-
-                this.crudView.btnEliminar.setEnabled(false);
-                this.crudView.btnActualizar.setEnabled(false);
+                
                 this.crudView.comboDatos.setVisible(true);
                 this.crudView.fieldDato.setVisible(false);
                 this.crudView.repaint();

@@ -23,11 +23,12 @@ public class GestorPapa {
 
     private Controler controler;
 
-    private int iteradorPapas = 1;
+    private int iteradorPapas;
 
     public GestorPapa(Controler controler) {
         this.papaDAO = new PapaDAO();
         this.controler = controler;
+        this.iteradorPapas = 0;
     }
 
     public void mostrarPapasCombo(String campo) {
@@ -48,6 +49,7 @@ public class GestorPapa {
 
         if (propiedades.getData("Papa" + this.iteradorPapas) == null) {
             controler.crearVentanaCrud();
+            controler.mensajeVentanaActual("Se han cargado las papas iniciales");
             return;
         }
 

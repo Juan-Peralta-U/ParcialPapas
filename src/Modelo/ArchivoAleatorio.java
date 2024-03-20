@@ -20,17 +20,20 @@ public class ArchivoAleatorio {
     private RandomAccessFile Rf;
     private long tamañoRegistro;
     private long canReg;
-    private int clave = 0;
+    private int clave;
 
     public ArchivoAleatorio(File Fl) {
         this.canReg = 0;
         this.tamañoRegistro = 1484;
+        this.clave = 0;
 
         /*
         4+(20+20+100+150+150+150+150)*2=1484
          */
         try {
             Rf = new RandomAccessFile(Fl, "rw");
+            
+            // Se borra lo que haya en el archivo;
             Rf.setLength(0);
           
 
@@ -43,7 +46,7 @@ public class ArchivoAleatorio {
         BufferedReader teclado = new BufferedReader(new InputStreamReader(
                 System.in));
         try {
-            //el tamaño de caracter esta basado en el documento del parcial (NO es inventado)
+            
             this.clave = Math.round(Rf.length() / this.tamañoRegistro) + 1;
             System.out.println(tamañoRegistro + " " + Rf.length());
             System.out.println(clave);
@@ -76,7 +79,7 @@ public class ArchivoAleatorio {
 
     public String lecturaRegistros() {
         int clave = 0;
-        String nombreComun="";
+        String nombreComun = "";
         String especie = "";
         String zonaProduccion = "";
         String habitoCrecimiento = "";
@@ -127,7 +130,7 @@ public class ArchivoAleatorio {
                 for (int i = 0; i < 150; ++i) {
                     tuberculos += Rf.readChar();
                 }
-                respuesta += ("\n" + clave + "\t\t" + nombreComun + "\t\t"  + especie + "\t\t" + zonaProduccion + "\t" + habitoCrecimiento + "\t" + floracion + "\t" + bayas + "\t" + tuberculos + "\n");
+                respuesta += ("\n" + clave + " " + nombreComun + " "  + especie + " " + zonaProduccion + " " + habitoCrecimiento + " " + floracion + " " + bayas + " " + tuberculos);
             }
         } catch (Exception e) {
         }
