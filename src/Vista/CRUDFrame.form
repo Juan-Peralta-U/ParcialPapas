@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -385,10 +385,18 @@
             <Component class="javax.swing.JComboBox" name="comboZonaProd">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value=" "/>
+                  <StringArray count="8">
+                    <StringItem index="0" value="Cundinamarca"/>
+                    <StringItem index="1" value="Nari&#xf1;o"/>
+                    <StringItem index="2" value="Antioquia"/>
+                    <StringItem index="3" value="Boyaca"/>
+                    <StringItem index="4" value="Santander"/>
+                    <StringItem index="5" value="Cauca"/>
+                    <StringItem index="6" value="Tolima"/>
+                    <StringItem index="7" value="Caldas"/>
                   </StringArray>
                 </Property>
+                <Property name="selectedIndex" type="int" value="0"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -643,6 +651,7 @@
                     <StringItem index="0" value="--Tipo de b&#xfa;squeda--"/>
                   </StringArray>
                 </Property>
+                <Property name="actionCommand" type="java.lang.String" value="comboBoxBuscar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBusquedaActionPerformed"/>

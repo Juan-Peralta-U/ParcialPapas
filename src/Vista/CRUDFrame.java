@@ -127,7 +127,8 @@ public class CRUDFrame extends javax.swing.JFrame {
         btnInsertar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(13, 24, 89), 1, true));
         btnInsertar.setContentAreaFilled(false);
 
-        comboZonaProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        comboZonaProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cundinamarca", "Nariño", "Antioquia", "Boyaca", "Santander", "Cauca", "Tolima", "Caldas" }));
+        comboZonaProd.setSelectedIndex(0);
 
         javax.swing.GroupLayout panelInsertarLayout = new javax.swing.GroupLayout(panelInsertar);
         panelInsertar.setLayout(panelInsertarLayout);
@@ -250,6 +251,7 @@ public class CRUDFrame extends javax.swing.JFrame {
 
         comboBusqueda.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
         comboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tipo de búsqueda--" }));
+        comboBusqueda.setActionCommand("comboBoxBuscar");
         comboBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBusquedaActionPerformed(evt);

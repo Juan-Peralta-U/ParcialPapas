@@ -31,7 +31,7 @@ public class PapaDAO {
 
     public PapaVO consultarPapa() {
         PapaVO papa = null;
-        String consulta = "SELECT * FROM Papas ";
+        String consulta = "SELECT * FROM papas ";
         try {
             con = (Connection) Conexion.getConexion();
             st = con.createStatement();
@@ -39,13 +39,13 @@ public class PapaDAO {
             if (rs.next()) {
                 //posible error a futuro con el constructor
                 papa = new PapaVO();
-                papa.setNombreComun(rs.getString("Nombre Comun"));
-                papa.setEspecie(rs.getString("Especie"));
-                papa.setZonaProduccion(rs.getString("nombre"));
-                papa.setHabitoCrecimiento(rs.getString(consulta));
-                papa.setFloracion(rs.getString("Floracion"));
-                papa.setBayas(rs.getString("Bayas"));
-                papa.setTuberculos(rs.getString("Tuberculos"));
+                papa.setNombreComun(rs.getString("nombreComun"));
+                papa.setEspecie(rs.getString("especie"));
+                papa.setZonaProduccion(rs.getString("zonaProduccion"));
+                papa.setHabitoCrecimiento(rs.getString("habitoCrecimiento"));
+                papa.setFloracion(rs.getString("floracion"));
+                papa.setBayas(rs.getString("bayas"));
+                papa.setTuberculos(rs.getString("tuberculos"));
 
             }
             st.close();
@@ -58,7 +58,7 @@ public class PapaDAO {
 
     public ArrayList<PapaVO> listaDePapas() {
         ArrayList<PapaVO> misPapas = new ArrayList<PapaVO>();
-        String consulta = "SELECT * FROM Papas";
+        String consulta = "SELECT * FROM papa";
         try {
             con = Conexion.getConexion();
             st = con.createStatement();
@@ -66,13 +66,13 @@ public class PapaDAO {
             while (rs.next()) {
                 //Mismo error con el constructor
                 PapaVO papa = new PapaVO();
-                papa.setNombreComun(rs.getString("Nombre Comun"));
-                papa.setEspecie(rs.getString("codigo"));
-                papa.setZonaProduccion(rs.getString("nombre"));
-                papa.setHabitoCrecimiento(rs.getString(consulta));
-                papa.setFloracion(rs.getString("Floracion"));
-                papa.setBayas(rs.getString("Bayas"));
-                papa.setTuberculos(rs.getString("Tuberculos"));
+                papa.setNombreComun(rs.getString("nombreComun"));
+                papa.setEspecie(rs.getString("especie"));
+                papa.setZonaProduccion(rs.getString("zonaProduccion"));
+                papa.setHabitoCrecimiento(rs.getString("habitoCrecimiento"));
+                papa.setFloracion(rs.getString("floracion"));
+                papa.setBayas(rs.getString("bayas"));
+                papa.setTuberculos(rs.getString("tuberculos"));
                 misPapas.add(papa);
             }
             st.close();
@@ -87,8 +87,8 @@ public class PapaDAO {
         try {
             con = (Connection) Conexion.getConexion();
             st = con.createStatement();
-            String insercion = "INSERT INTO papa VALUES('" + papa.getNombreComun() + ",'" + papa.getEspecie() + ",'" + papa.getZonaProduccion() + "',"
-                    + "'" + papa.getHabitoCrecimiento() + "','" + papa.getFloracion() + "','" + papa.getBayas() + "','" + papa.getTuberculos() + "')";
+            String insercion = "INSERT INTO papa VALUES('" + papa.getNombreComun() + "','" + papa.getEspecie() + "','" + papa.getZonaProduccion() + "','"
+            + papa.getHabitoCrecimiento() + "','" + papa.getFloracion() + "','" + papa.getBayas() + "','" + papa.getTuberculos() + "')";
             st.executeUpdate(insercion);
             st.close();
             Conexion.desconectar();

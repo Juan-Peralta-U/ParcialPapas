@@ -47,7 +47,9 @@ public class Controler implements ActionListener{
         this.crudView.btnActualizar.addActionListener(this);
         this.crudView.btnConsultar.addActionListener(this);
         this.crudView.btnEliminar.addActionListener(this);
+        this.crudView.comboBusqueda.addActionListener(this);
         this.crudView.setVisible(true);
+        this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra);
     }
     
     
@@ -55,14 +57,15 @@ public class Controler implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         switch(e.getActionCommand()){
-            
+                                   
             case "InsertarInitial" ->{
-                this.frameInicial.dispose();
-                this.gestorPapa.cargarPapas(archivoPropiedades, this);
                 this.gestorPapa.registrarPapa(frameInicial.fieldNombre.getText(), 
                 frameInicial.fieldEspecie.getText(), String.valueOf(frameInicial.fieldZonaProd.getText()), 
                 frameInicial.txAreaHabito.getText(), frameInicial.txAreaFloracion.getText(), 
-                frameInicial.txAreaBayas.getText(), frameInicial.txAreaTuberculos.getText());                
+                frameInicial.txAreaBayas.getText(), frameInicial.txAreaTuberculos.getText());       
+                this.frameInicial.dispose();
+                this.gestorPapa.cargarPapas(archivoPropiedades, this);
+                         
             }
             case "LimpiarInitial" ->{
                 this.frameInicial.limpiarFrame();
@@ -73,6 +76,13 @@ public class Controler implements ActionListener{
                 crudView.txAreaHabito.getText(), crudView.txAreaFloracion.getText(), 
                 crudView.txAreaBayas.getText(), crudView.txAreaTuberculos.getText());
             }
+            
+            case "comboBoxBuscar"->{
+                if(String.valueOf(this.crudView.comboBusqueda.getSelectedItem()).equals("--Tipo de búsqueda--")){
+                
+                }
+            }
+            
             case "ConsultarCrud"->{
                 
             }
