@@ -24,7 +24,7 @@ public class Conexion {
         try {
             cn = DriverManager.getConnection(URLBD, usuario, contrasena);
         } catch (SQLException ex) {
-            System.out.println("No se puede cargar el controlador");
+            //System.out.println("No se puede cargar el controlador");
         }
         return cn;
     }

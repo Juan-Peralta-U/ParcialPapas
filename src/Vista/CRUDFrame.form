@@ -249,10 +249,6 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="fieldNombre">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -277,10 +273,6 @@
               </SubComponents>
             </Container>
             <Component class="javax.swing.JTextField" name="fieldEspecie">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -396,7 +388,6 @@
                     <StringItem index="7" value="Caldas"/>
                   </StringArray>
                 </Property>
-                <Property name="selectedIndex" type="int" value="0"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -496,6 +487,7 @@
                   <Color blue="59" green="18" red="d" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="actionCommand" type="java.lang.String" value="ConsultarCRUD"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true">
@@ -603,6 +595,7 @@
                   <Color blue="59" green="18" red="d" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
+                <Property name="actionCommand" type="java.lang.String" value="EliminarCRUD"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true">
@@ -628,6 +621,7 @@
                   <Color blue="59" green="18" red="d" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="actionCommand" type="java.lang.String" value="ActualizarCRUD"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true">

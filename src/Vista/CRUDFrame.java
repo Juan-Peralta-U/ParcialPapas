@@ -89,16 +89,10 @@ public class CRUDFrame extends javax.swing.JFrame {
         labTuberculos.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         labTuberculos.setText("Tubérculos:");
 
-        fieldNombre.setEditable(false);
-        fieldNombre.setFocusable(false);
-
         txAreaHabito.setColumns(20);
         txAreaHabito.setLineWrap(true);
         txAreaHabito.setRows(5);
         jScrollPane2.setViewportView(txAreaHabito);
-
-        fieldEspecie.setEditable(false);
-        fieldEspecie.setFocusable(false);
 
         txAreaBayas.setColumns(20);
         txAreaBayas.setLineWrap(true);
@@ -128,7 +122,6 @@ public class CRUDFrame extends javax.swing.JFrame {
         btnInsertar.setContentAreaFilled(false);
 
         comboZonaProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cundinamarca", "Nariño", "Antioquia", "Boyaca", "Santander", "Cauca", "Tolima", "Caldas" }));
-        comboZonaProd.setSelectedIndex(0);
 
         javax.swing.GroupLayout panelInsertarLayout = new javax.swing.GroupLayout(panelInsertar);
         panelInsertar.setLayout(panelInsertarLayout);
@@ -212,6 +205,7 @@ public class CRUDFrame extends javax.swing.JFrame {
         btnConsultar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnConsultar.setForeground(new java.awt.Color(13, 24, 89));
         btnConsultar.setText("Consultar");
+        btnConsultar.setActionCommand("ConsultarCRUD");
         btnConsultar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(13, 24, 89), 1, true));
         btnConsultar.setContentAreaFilled(false);
 
@@ -239,6 +233,7 @@ public class CRUDFrame extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(13, 24, 89));
         btnEliminar.setText("Eliminar");
+        btnEliminar.setActionCommand("EliminarCRUD");
         btnEliminar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(13, 24, 89), 1, true));
         btnEliminar.setContentAreaFilled(false);
 
@@ -246,6 +241,7 @@ public class CRUDFrame extends javax.swing.JFrame {
         btnActualizar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(13, 24, 89));
         btnActualizar.setText("Actualizar");
+        btnActualizar.setActionCommand("ActualizarCRUD");
         btnActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(13, 24, 89), 1, true));
         btnActualizar.setContentAreaFilled(false);
 

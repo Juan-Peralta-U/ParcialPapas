@@ -31,8 +31,9 @@ public class Controler implements ActionListener{
 
     public void crearVentanaInicial(String nombre,String especie,
             String zonaProduccion, int papaActual)
-    {
+    {  
         frameInicial = new InitialFrame();
+        frameInicial.setLocationRelativeTo(null);
         frameInicial.btnInsertar.addActionListener(this);
         frameInicial.btnLimpiar.addActionListener(this);
         frameInicial.labTitulo.setText("Insertar Datos: " + papaActual);
@@ -48,6 +49,7 @@ public class Controler implements ActionListener{
         this.crudView.btnConsultar.addActionListener(this);
         this.crudView.btnEliminar.addActionListener(this);
         this.crudView.comboBusqueda.addActionListener(this);
+        this.crudView.setLocationRelativeTo(null);
         this.crudView.setVisible(true);
         this.gestorPapa.mostrarPapas(this.crudView.tablaMuestra);
     }
@@ -60,7 +62,7 @@ public class Controler implements ActionListener{
                                    
             case "InsertarInitial" ->{
                 this.gestorPapa.registrarPapa(frameInicial.fieldNombre.getText(), 
-                frameInicial.fieldEspecie.getText(), String.valueOf(frameInicial.fieldZonaProd.getText()), 
+                frameInicial.fieldEspecie.getText(), frameInicial.fieldZonaProd.getText(), 
                 frameInicial.txAreaHabito.getText(), frameInicial.txAreaFloracion.getText(), 
                 frameInicial.txAreaBayas.getText(), frameInicial.txAreaTuberculos.getText());       
                 this.frameInicial.dispose();
@@ -70,8 +72,8 @@ public class Controler implements ActionListener{
             case "LimpiarInitial" ->{
                 this.frameInicial.limpiarFrame();
             }
-            case "InsertarCrud"->{
-                this.gestorPapa.registrarPapa(crudView.fieldNombre.getText(), 
+            case "InsertarCRUD"->{
+                this.gestorPapa.registrarPapa(crudView.fieldNombre.getText(),
                 crudView.fieldEspecie.getText(), String.valueOf(crudView.comboZonaProd.getSelectedItem()), 
                 crudView.txAreaHabito.getText(), crudView.txAreaFloracion.getText(), 
                 crudView.txAreaBayas.getText(), crudView.txAreaTuberculos.getText());
@@ -83,13 +85,13 @@ public class Controler implements ActionListener{
                 }
             }
             
-            case "ConsultarCrud"->{
+            case "ConsultarCRUD"->{
                 
             }
-            case "EliminarCrud"->{
+            case "EliminarCRUD"->{
                 
             }
-            case "ActualizarCrud"->{
+            case "ActualizarCRUD"->{
                 
             }
             
