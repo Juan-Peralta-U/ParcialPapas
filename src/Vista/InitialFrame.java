@@ -6,6 +6,7 @@ package Vista;
 
 import Controlador.Logica.Controler;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JViewport;
 import javax.swing.UIManager;
 
@@ -30,6 +31,10 @@ public class InitialFrame extends javax.swing.JFrame {
         this.txAreaFloracion.setText("");
         this.txAreaHabito.setText("");
         this.txAreaTuberculos.setText("");
+    }
+    
+    public void mensajeEmergente(String m){
+        JOptionPane.showMessageDialog(null, m);
     }
     
     /**

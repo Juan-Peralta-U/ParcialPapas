@@ -8,6 +8,7 @@ import Controlador.DAO.PapaDAO;
 import Modelo.ArchivoPropiedades;
 import Modelo.PapaVO;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,28 +26,16 @@ public class GestorPapa {
         this.papaDAO = new PapaDAO();
     }
 
-    private void obtenerRegistros() {
-        /*
-        ArrayList<PapaVO> listaDePapas = papaDAO.listaDePapas();
-        for (PapaVO papa : listaDePapas) {
-            //TOda la informacion de las papas
-            //EJM System.out.println("Especie: " + miPapa.getEspecie());
+    public void mostrarPapasCombo(JComboBox<String> combo, String campo) {
+        combo.removeAllItems();
+        ArrayList<String> lista = papaDAO.listaColumnaPapa(campo);
+
+        if (lista.isEmpty()) {
+            combo.addItem("-- No hay registros --");
+            return;
         }
-        */
-    }
-
-
-    private void buscarPapa() {
-        papaDAO = new PapaDAO();
-        //Toca poner un identificador??
-        String codigo = "";
-        PapaVO papaEncontrada = papaDAO.consultarPapa();
-
-        if (papaEncontrada != null) {
-
-            //Lo mismo del metodo de alleba pero System.out.println("Zona de Produccion: " + papaEncontrada.getZonaProduccion());
-        } else {
-            //ventana de error
+        for (String s : lista) {
+            combo.addItem(s);
         }
     }
 
@@ -81,9 +70,14 @@ public class GestorPapa {
 
     }
 
-    //Necesito ver bien la presentacion
-    private void eliminarPapa() {
+    public boolean eliminarPapa(String nombreComun, JComboBox<String> combo) {
+        boolean b = papaDAO.eliminarPapa(nombreComun);
+        mostrarPapasCombo(combo, "nombreComun");
+        return b;
+    }
 
+    public boolean actualizarPapa(String nombreComun, String[] valores) {
+        return papaDAO.modificarPapa(nombreComun, valores);
     }
 
     public void mostrarPapas(JTable tabla, String campo, String valor) {

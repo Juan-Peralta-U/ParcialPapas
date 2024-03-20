@@ -5,6 +5,7 @@
 package Vista;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -61,11 +62,13 @@ public class CRUDFrame extends javax.swing.JFrame {
         comboBusqueda = new javax.swing.JComboBox<>();
         fieldDato = new javax.swing.JTextField();
         comboDatos = new javax.swing.JComboBox<>();
+        labIndicaciones = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
-        btnLimpiar1 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         panePaneles.setFont(new java.awt.Font("Dubai Medium", 0, 12)); // NOI18N
 
@@ -248,36 +251,36 @@ public class CRUDFrame extends javax.swing.JFrame {
         comboBusqueda.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
         comboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "nombreComun", "especie", "zonaProduccion", "floracion (Color)", "tuberculos (Forma)" }));
         comboBusqueda.setActionCommand("comboBoxBuscar");
-        comboBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBusquedaActionPerformed(evt);
-            }
-        });
+
+        labIndicaciones.setForeground(new java.awt.Color(204, 0, 0));
+        labIndicaciones.setText("* Consulte un nombre para eliminar o actualizar");
 
         javax.swing.GroupLayout panelGestionarLayout = new javax.swing.GroupLayout(panelGestionar);
         panelGestionar.setLayout(panelGestionarLayout);
         panelGestionarLayout.setHorizontalGroup(
             panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelGestionarLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
-                        .addComponent(comboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldDato, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(114, 114, 114))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
-                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))))
+                    .addComponent(labIndicaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
+                            .addComponent(comboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addGroup(panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(fieldDato, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(114, 114, 114))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGestionarLayout.createSequentialGroup()
+                            .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)))))
         );
         panelGestionarLayout.setVerticalGroup(
             panelGestionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,7 +297,9 @@ public class CRUDFrame extends javax.swing.JFrame {
                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labIndicaciones)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         fieldDato.setVisible(false);
@@ -312,12 +317,12 @@ public class CRUDFrame extends javax.swing.JFrame {
         btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 24, 89)));
         btnLimpiar.setContentAreaFilled(false);
 
-        btnLimpiar1.setBackground(new java.awt.Color(255, 255, 255));
-        btnLimpiar1.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnLimpiar1.setForeground(new java.awt.Color(13, 24, 89));
-        btnLimpiar1.setText("Salir");
-        btnLimpiar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 24, 89)));
-        btnLimpiar1.setContentAreaFilled(false);
+        btnSalir.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalir.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(13, 24, 89));
+        btnSalir.setText("Salir");
+        btnSalir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 24, 89)));
+        btnSalir.setContentAreaFilled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -331,7 +336,7 @@ public class CRUDFrame extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnLimpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panePaneles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
@@ -342,7 +347,7 @@ public class CRUDFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panePaneles, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -351,10 +356,19 @@ public class CRUDFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBusquedaActionPerformed
-
+    public void limpiarFrame(){
+        this.fieldNombre.setText("");
+        this.fieldEspecie.setText("");
+        this.fieldDato.setText("");
+        this.txAreaBayas.setText("");
+        this.txAreaFloracion.setText("");
+        this.txAreaHabito.setText("");
+        this.txAreaTuberculos.setText("");
+    }
+    
+    public void mensajeEmergente(String m){
+        JOptionPane.showMessageDialog(null, m);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
@@ -362,7 +376,7 @@ public class CRUDFrame extends javax.swing.JFrame {
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnInsertar;
     public javax.swing.JButton btnLimpiar;
-    public javax.swing.JButton btnLimpiar1;
+    public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> comboBusqueda;
     public javax.swing.JComboBox<String> comboDatos;
     public javax.swing.JComboBox<String> comboZonaProd;
@@ -378,6 +392,7 @@ public class CRUDFrame extends javax.swing.JFrame {
     public javax.swing.JLabel labEspecie;
     public javax.swing.JLabel labFloracion;
     public javax.swing.JLabel labHabito;
+    public javax.swing.JLabel labIndicaciones;
     public javax.swing.JLabel labNombre;
     public javax.swing.JLabel labTuberculos;
     public javax.swing.JLabel labZonaProd;
