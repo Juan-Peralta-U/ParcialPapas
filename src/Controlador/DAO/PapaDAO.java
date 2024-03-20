@@ -55,6 +55,24 @@ public class PapaDAO {
         }
         return papa;
     }
+    
+    public ArrayList<String> listaColumnaPapa(String columna){
+        ArrayList<String> datos = new ArrayList<>();
+        String consulta = "SELECT DISTINCT " + columna + " FROM papa";
+        try {
+            con = Conexion.getConexion();
+            st = con.createStatement();
+            rs = st.executeQuery(consulta);
+            while (rs.next()) {
+                datos.add(rs.getString(1));
+            }
+            st.close();
+            Conexion.desconectar();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return datos;
+    }
 
     public ArrayList<PapaVO> listaDePapas(String campo, String valor) {
         ArrayList<PapaVO> misPapas = new ArrayList<PapaVO>();
@@ -109,19 +127,28 @@ public class PapaDAO {
             return true;
 
         } catch (Exception e) {
-            //Ventana error insercion
+            System.out.println(e);
 
         }
         return false;
     }
 
-    public boolean modificarPapa(String nombreComun, String campoModificable, String valorModificado) {
+    public boolean modificarPapa(String nombreComun, String[] valores) {
         /*Modo locura pa no tener que hacerlo varias veces
         *Campo modificable es el campo que se va a modificar de la tabla
         *El valor modificado sera el nuevo dato o valor que tendrá
         *Nombre comun es la primary key, el identificador de cada papa
          */
-        String consulta = "update papa set '" + campoModificable + "'='" + valorModificado + "' where nombreComun='" + nombreComun + "' ";
+        if(valores.length != 6){
+            return false;
+        }
+        String consulta = "UPDATE papa SET especie = '" + valores[0] + "',"
+                + "zonaProduccion = '" + valores[1] + "', "
+                + "habitoCrecimiento = '" + valores[2] + "', "
+                + "floracion = '" + valores[3] + "', "
+                + "bayas = '" + valores[4] + "', "
+                + "tuberculos = '" + valores[5] + "' "
+                + "WHERE nombreComun='" + nombreComun + "' ";
         try {
             con = Conexion.getConexion();
             st = con.createStatement();
@@ -130,7 +157,7 @@ public class PapaDAO {
             Conexion.desconectar();
             return true;
         } catch (SQLException ex) {
-            //ventana error
+            System.out.println(ex);
         }
         return false;
     }
