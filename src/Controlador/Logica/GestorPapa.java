@@ -28,7 +28,7 @@ public class GestorPapa {
     public GestorPapa(Controler controler) {
         this.papaDAO = new PapaDAO();
         this.controler = controler;
-        this.iteradorPapas = 0;
+        this.iteradorPapas = 1;
     }
 
     public void mostrarPapasCombo(String campo) {

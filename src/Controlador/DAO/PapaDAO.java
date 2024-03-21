@@ -80,7 +80,7 @@ public class PapaDAO {
             st.close();
             Conexion.desconectar();
         } catch (SQLException ex) {
-            System.out.println(ex);
+            //Ventana error consulta
         }
         return datos;
     }
