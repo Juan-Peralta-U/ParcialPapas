@@ -13,17 +13,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Clase controler maneja los eventos del programa y maneja la lógica
  * @author Juan
  */
 public class Controler implements ActionListener {
-
+    /**
+     * vista del crud
+     */
     private CRUDFrame crudView;
+    /**
+     * gestor que maneja la logica de la papa
+     */
     private GestorPapa gestorPapa;
+    /**
+     * archivo que permite cargar los datos de inicio
+     */
     private ArchivoPropiedades archivoPropiedades;
+    /**
+     * archivo que permite almacenar los archivos de manera no volatil
+     */
     private ArchivoAleatorio archivoSalida;
+    /**
+     * ventana donde se insertan los datos iniciales
+     */
     InitialFrame frameInicial;
-
+    
+    /**
+     * controlador de la clase, permite instanciar su contenido de primeras
+     */
     public Controler() {
         this.crudView = new CRUDFrame();
         this.gestorPapa = new GestorPapa(this);
@@ -31,7 +48,13 @@ public class Controler implements ActionListener {
                 new FileChooser("Selecciona archivo propiedades").getFile());
         this.gestorPapa.cargarPapas(archivoPropiedades);
     }
-
+    /**
+     * Crea la ventana inicial donde se registrara los primeros datos
+     * @param nombre nombre comun de la papa
+     * @param especie espcie de la papa
+     * @param zonaProduccion zona donde se produce la papa
+     * @param papaActual especifica el orden de la entrada de datos
+     */
     public void crearVentanaInicial(String nombre, String especie,
             String zonaProduccion, int papaActual) {
         frameInicial = new InitialFrame();
@@ -42,11 +65,15 @@ public class Controler implements ActionListener {
         frameInicial.fieldNombre.setText(nombre);
         frameInicial.fieldEspecie.setText(especie);
         frameInicial.fieldZonaProd.setText(zonaProduccion);
-        this.gestorPapa.registrarPapa(frameInicial.fieldNombre.getText(),
-                frameInicial.fieldEspecie.getText(), frameInicial.fieldZonaProd.getText(),
+        this.gestorPapa.registrarPapa(nombre,
+                especie, zonaProduccion,
                 frameInicial.txAreaHabito.getText(), frameInicial.txAreaFloracion.getText(),
                 frameInicial.txAreaBayas.getText(), frameInicial.txAreaTuberculos.getText());
     }
+    
+    /**
+     * Crea la ventana que manejara la CRUD del sistema de papa
+     */
 
     public void crearVentanaCrud() {
         this.crudView.btnInsertar.addActionListener(this);
@@ -65,6 +92,10 @@ public class Controler implements ActionListener {
         this.gestorPapa.mostrarPapas(String.valueOf(this.crudView.comboBusqueda.getSelectedItem()), "%%");
     }
 
+    /**
+     * Identifica si hay espacios vacios en el frame inicial
+     * @return retorna la validacion del proceso
+     */
     public boolean ValidarEspaciosInitial() {
         if (frameInicial.txAreaBayas.getText().isEmpty()
                 || frameInicial.txAreaFloracion.getText().isEmpty()
@@ -75,6 +106,10 @@ public class Controler implements ActionListener {
         return true;
     }
 
+    /**
+     * Identifica si hay espacios vacios en el frame del CRUD
+     * @return retorna la validacion del proceso
+     */
     public boolean ValidarEspaciosCreate() {
         if (crudView.fieldNombre.getText().isEmpty()
                 || crudView.fieldEspecie.getText().isEmpty()
@@ -87,6 +122,10 @@ public class Controler implements ActionListener {
         return true;
     }
 
+    /**
+     * Identifica si hay espacios vacios en la Jtable
+     * @return retorna la validacion del proceso
+     */
     public boolean ValidarEspaciosJTable() {
         if (crudView.tablaMuestra.getModel().getValueAt(0, 1).equals("")
                 || crudView.tablaMuestra.getModel().getValueAt(0, 2).equals("")
@@ -98,7 +137,11 @@ public class Controler implements ActionListener {
         }
         return true;
     }
-
+    
+    /**
+     * Maneja los eventos de la vista
+     * @param e evento
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -147,14 +190,14 @@ public class Controler implements ActionListener {
                 this.crudView.comboDatos.setEnabled(true);
                 this.crudView.btnEliminar.setEnabled(false);
                 this.crudView.btnActualizar.setEnabled(false);
-
+                //CUando no es campo con lista desplegable
                 if (this.crudView.comboBusqueda.getSelectedIndex() > 2) {
                     this.crudView.comboDatos.setVisible(false);
                     this.crudView.fieldDato.setVisible(true);
                     this.crudView.repaint();
                     return;
                 }
-
+                //Cuando se selecciona zoda produccion
                 if (crudView.comboBusqueda.getSelectedIndex() == 2) {
 
                     crudView.comboDatos.removeAllItems();
@@ -167,7 +210,7 @@ public class Controler implements ActionListener {
                         crudView.comboDatos.addItem(s);
                     }
                 }
-
+                
                 if (crudView.comboBusqueda.getSelectedIndex() < 2) {
                     gestorPapa.mostrarPapasCombo(String.valueOf(crudView.comboBusqueda.getSelectedItem()));
                 }
@@ -217,7 +260,7 @@ public class Controler implements ActionListener {
 
                 this.crudView.btnEliminar.setEnabled(false);
                 this.crudView.btnActualizar.setEnabled(false);
-
+                //obtiene los valores desde especie hasta tuberculo de Jtable
                 String[] valores = new String[6];
                 for (int i = 0; i < 6; i++) {
                     valores[i] = "" + crudView.tablaMuestra.getModel().getValueAt(0, i + 1);
@@ -243,7 +286,11 @@ public class Controler implements ActionListener {
         }
 
     }
-
+    
+    /**
+     * Lanza un mensaje de la ventana que se activa
+     * @param msj es el mensaje a lanzar
+     */
     public void mensajeVentanaActual(String msj) {
         if (this.crudView == null) {
             this.frameInicial.mensajeEmergente(msj);
@@ -253,12 +300,12 @@ public class Controler implements ActionListener {
         this.crudView.mensajeEmergente(msj);
     }
 
+     /**
+      * retorna la crud view
+      * @return 
+      */
     public CRUDFrame getCrudView() {
         return crudView;
-    }
-
-    public InitialFrame getFrameInicial() {
-        return frameInicial;
     }
 
 }

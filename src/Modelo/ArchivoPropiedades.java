@@ -11,20 +11,41 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
+ * Clase ArchivoPropiedades
+ *
+ * Esta clase maneja la lectura de un archivo de propiedades y proporciona
+ * acceso a los datos almacenados en él.
  *
  * @author Familia Mora
  */
 public class ArchivoPropiedades {
-
+    /**
+     * Archivo de propiedades a leer.
+     */
     private File archivo;
+    /**
+     * Objeto Properties que contiene las propiedades leídas del archivo.
+     */
     private Properties propiedades = new Properties();
+     /**
+     * Flujo de entrada para leer el archivo de propiedades.
+     */
     private InputStream entrada = null;
-
+    
+    /**
+     * Constructor de la clase ArchivoPropiedades.
+     *
+     * @param archivo Archivo de propiedades a leer.
+     */
     public ArchivoPropiedades(File archivo) {
         this.archivo = archivo;
         this.leerArchivo();
     }
-
+    
+     /**
+     * Método que lee el archivo de propiedades y carga sus datos en el objeto
+     * Properties.
+     */
     public void leerArchivo() {
         if (archivo == null) {
             System.exit(0);
@@ -46,7 +67,12 @@ public class ArchivoPropiedades {
             }
         }
     }
-
+    /**
+     * Obtiene el valor de una propiedad específica del archivo de propiedades.
+     *
+     * @param key Clave de la propiedad a obtener.
+     * @return Valor de la propiedad, o null si la clave no existe.
+     */
     public String getData(String key) {
         return this.propiedades.getProperty(key);
     }
