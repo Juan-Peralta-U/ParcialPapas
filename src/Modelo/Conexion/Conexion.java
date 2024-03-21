@@ -16,7 +16,7 @@ public class Conexion {
 
     private static Connection cn = null;
     //private static String URLBD = "jdbc:mysql://localhost:3308/TallerPapa";
-    private static String URLBD = "jdbc:mysql://localhost:3306/TallerPapa";
+    private static String URLBD = "jdbc:mysql://localhost:3308/TallerPapa";
     private static String usuario = "root";
     private static String contrasena = "";
 
